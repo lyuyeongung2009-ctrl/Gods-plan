@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07100b">
+<meta name="description" content="God's plan — a personal strategy workspace for turning goals into practical actions.">
+<title>God's plan — Personal Strategy OS</title>
+<style>
+:root{--ink:#121b22;--ink2:#1d2932;--paper:#f3f0e9;--paper2:#e9e5dc;--white:#fffdf8;--muted:#78817f;--muted2:#a8afaa;--gold:#9eb66e;--gold2:#c2d49b;--line:#d9d5cb;--darkline:#34424a;--green:#668a76;--red:#b86d62;--blue:#6b8798;--shadow:0 22px 60px rgba(23,31,35,.11);--radius:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Pretendard,"Noto Sans KR",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1240px,calc(100% - 48px));margin:auto}.eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--gold)}.serif{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.045em}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid transparent;border-radius:999px;padding:13px 20px;font-size:13px;font-weight:750;transition:.2s}.btn:hover{transform:translateY(-2px)}.btn-dark{background:var(--ink);color:#fffdf8;box-shadow:0 9px 22px #121b2222}.btn-dark:hover{background:#26343c}.btn-light{border-color:#bdb8ad;background:transparent;color:var(--ink)}.btn-gold{background:var(--gold);color:#191b1b}.btn-small{padding:9px 14px;font-size:11px}.icon{width:18px;height:18px;display:inline-block;vertical-align:middle}
+/* header */
+.header{position:sticky;top:0;z-index:30;background:#f3f0e9eF;backdrop-filter:blur(16px);border-bottom:1px solid #d9d5cbcc}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.045em;font-size:17px}.brand-mark{width:38px;height:38px;border-radius:12px;background:var(--ink);color:var(--gold2);display:grid;place-items:center;font-family:Georgia,serif;font-size:22px;box-shadow:inset 0 0 0 1px #d5bd8f55}.brand small{display:block;margin-top:-3px;font-size:8px;letter-spacing:.17em;color:#7e837d;font-weight:800}.navlinks{display:flex;align-items:center;gap:26px;font-size:12px;font-weight:700;color:#5e6967}.navlinks a:hover{color:var(--gold)}.navright{display:flex;align-items:center;gap:10px}.mode-pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #c9d4ca;background:#e7eee7;color:#4d705c;border-radius:999px;padding:7px 11px;font-size:10px;font-weight:800;letter-spacing:.04em}.mode-dot{width:6px;height:6px;border-radius:50%;background:#6f9d7c;box-shadow:0 0 0 3px #6f9d7c22}.mobile-menu{display:none;background:transparent;border:0;font-size:22px;color:var(--ink)}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:78px 0 72px;background:radial-gradient(ellipse at 82% 20%,#e6ddc8 0,transparent 31%),linear-gradient(112deg,#f3f0e9,#eeeae0)}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}.hero h1{font-size:clamp(42px,5.5vw,72px);line-height:1.08;margin:18px 0 20px;max-width:680px}.hero h1 em{color:var(--gold);font-style:normal}.hero-copy{max-width:540px;color:#68716f;font-size:15px;line-height:1.85}.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:28px}.hero-foot{display:flex;align-items:center;gap:18px;margin-top:30px;color:#878d86;font-size:10px}.hero-foot span{display:flex;align-items:center;gap:7px}.hero-visual{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center}.orb{position:absolute;width:330px;height:330px;border-radius:50%;background:linear-gradient(145deg,#e8ddc6,#c0a979);opacity:.38;filter:blur(1px)}.dashboard-preview{position:relative;width:min(100%,480px);border-radius:20px;padding:22px;background:#131e26;color:#f7f4ec;box-shadow:0 35px 75px #14212b33;transform:rotate(1.5deg);border:1px solid #ffffff1b}.preview-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff1d;padding-bottom:16px}.preview-brand{font-size:11px;font-weight:850;letter-spacing:.06em}.preview-tag{font-size:8px;color:#b7c1b8;border:1px solid #74827d66;padding:5px 8px;border-radius:20px}.preview-label{font-size:9px;letter-spacing:.14em;color:#aab5ad;margin:19px 0 7px}.preview-title{font-size:24px;line-height:1.25;max-width:330px}.preview-graph{height:116px;margin-top:15px;border-bottom:1px solid #ffffff28;position:relative}.preview-graph svg{width:100%;height:100%;overflow:visible}.preview-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.preview-stat{background:#ffffff0b;border:1px solid #ffffff12;padding:11px;border-radius:11px}.preview-stat strong{display:block;font-size:19px;font-weight:600}.preview-stat span{font-size:8px;color:#abb6b0;letter-spacing:.08em}.preview-floating{position:absolute;right:-12px;bottom:20px;width:190px;background:#fffdf8;color:var(--ink);padding:15px;border-radius:14px;box-shadow:var(--shadow);transform:rotate(-3deg)}.preview-floating b{display:block;font-size:11px}.preview-floating p{font-size:9px;color:#7d8580;margin:6px 0 10px}.mini-progress{height:5px;background:#e7e3d9;border-radius:9px;overflow:hidden}.mini-progress i{display:block;width:68%;height:100%;background:var(--gold)}
+/* trust strip */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#efebe2}.strip-grid{display:grid;grid-template-columns:repeat(4,1fr)}.strip-item{padding:22px 24px;border-right:1px solid var(--line)}.strip-item:first-child{padding-left:0}.strip-item:last-child{border:0}.strip-item b{display:block;font-size:12px;letter-spacing:.04em}.strip-item span{font-size:10px;color:#858a82}
+/* sections */
+.section{padding:92px 0}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:34px}.section-head h2{font-size:clamp(32px,4vw,48px);line-height:1.12;margin:9px 0 0}.section-head p{max-width:420px;font-size:12px;color:#737c78;line-height:1.8;margin:0}.method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.method-card{min-height:200px;padding:22px;border:1px solid var(--line);border-radius:18px;background:#f8f6f0;position:relative;overflow:hidden}.method-num{font-family:Georgia,serif;color:var(--gold);font-size:28px}.method-card h3{font-size:16px;margin:30px 0 8px}.method-card p{font-size:11px;color:#77807b;line-height:1.8;margin:0;max-width:240px}.method-arrow{position:absolute;right:20px;top:23px;color:#82917f}
+/* dark workspace */
+.workspace{background:var(--ink);color:#f3f1e9;padding:88px 0 96px;position:relative;overflow:hidden}.workspace:before{content:"";position:absolute;top:-200px;right:-140px;width:470px;height:470px;border-radius:50%;border:1px solid #ffffff0b;box-shadow:0 0 0 55px #ffffff05,0 0 0 110px #ffffff03}.workspace .section-head p{color:#a5aea8}.workspace .eyebrow{color:var(--gold2)}.work-shell{position:relative;display:grid;grid-template-columns:208px 1fr;gap:20px;align-items:start}.side-nav{position:sticky;top:96px;border:1px solid #ffffff1a;background:#ffffff07;border-radius:17px;padding:13px}.side-label{font-size:8px;color:#89958f;letter-spacing:.17em;font-weight:800;margin:12px 10px 9px}.side-link{display:flex;align-items:center;gap:10px;border-radius:10px;padding:10px;color:#b8c1bb;font-size:11px;font-weight:700;margin-bottom:3px;transition:.18s}.side-link:hover,.side-link.active{background:#ffffff12;color:#f9f6eb}.side-link.active .side-ico{color:var(--gold2)}.side-ico{width:17px;text-align:center;color:#85938c}.side-foot{border-top:1px solid #ffffff1b;margin-top:14px;padding:14px 8px 4px;color:#9ba69e;font-size:9px;line-height:1.7}.side-foot strong{color:#c7d6a0;display:block;font-size:10px;margin-bottom:3px}.work-main{min-width:0}.work-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 0 18px}.work-title small{display:block;color:#a4aea6;font-size:9px;letter-spacing:.16em;text-transform:uppercase}.work-title h3{font-size:25px;margin:3px 0 0;letter-spacing:-.04em}.work-date{font-size:10px;color:#aab5ae;border:1px solid #ffffff24;border-radius:999px;padding:8px 12px}.work-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.panel{background:#1b2831;border:1px solid #ffffff12;border-radius:17px;padding:20px;min-width:0}.panel.light{background:#f8f6f0;color:var(--ink);border:1px solid #ffffff14}.panel-kicker{font-size:8px;letter-spacing:.17em;color:#9da9a0;font-weight:850;text-transform:uppercase}.panel.light .panel-kicker{color:#8a8b7e}.panel-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:7px 0 14px}.panel-title h4{font-size:16px;margin:0;letter-spacing:-.025em}.panel-title span{font-size:9px;color:#aab4ad}.panel.light .panel-title span{color:#8b908a}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field label{display:block;color:#a9b4ac;font-size:9px;font-weight:700;margin:0 0 6px}.panel.light .field label{color:#737b74}.field input,.field select,.field textarea{width:100%;background:#111c24;border:1px solid #ffffff1b;border-radius:9px;padding:11px 12px;color:#f4f2e9;outline:none;font-size:11px;transition:.18s}.field input:focus,.field select:focus,.field textarea:focus{border-color:#a9bd79;box-shadow:0 0 0 3px #a9bd7917}.panel.light .field input,.panel.light .field select,.panel.light .field textarea{background:#fffdf8;border:1px solid #d9d5cb;color:var(--ink)}.field textarea{resize:vertical;min-height:70px}.field.full{grid-column:1/-1}.field select option{background:#19242c}.form-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px}.helper{font-size:9px;color:#9ba7a0;line-height:1.6}.panel.light .helper{color:#81877f}.briefing{background:linear-gradient(145deg,#293942,#1c2a31);position:relative;overflow:hidden}.briefing:after{content:"G";font-family:Georgia,serif;position:absolute;right:-5px;bottom:-60px;font-size:220px;color:#ffffff08;pointer-events:none}.briefing .panel-title h4{font-size:18px}.briefing-copy{font-size:12px;color:#cad0c9;line-height:1.85;position:relative;z-index:1}.briefing-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1}.small-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.small-stat{padding:13px;border:1px solid #ffffff15;background:#ffffff07;border-radius:12px}.small-stat strong{display:block;font-size:23px;font-weight:550;letter-spacing:-.04em}.small-stat span{font-size:8px;color:#aab5ae;letter-spacing:.07em}.wide-panel{margin-top:14px}.idea-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.idea-card{background:#f8f6f0;border:1px solid #e5e0d4;color:var(--ink);border-radius:13px;padding:15px;display:flex;flex-direction:column;min-height:205px}.idea-cat{font-size:8px;color:#a2824d;font-weight:850;letter-spacing:.14em}.idea-card h5{font-size:13px;margin:9px 0 6px}.idea-card p{font-size:10px;color:#758079;line-height:1.7;margin:0 0 12px}.idea-meta{margin-top:auto;display:flex;gap:7px;flex-wrap:wrap}.idea-meta span{font-size:8px;color:#6e7771;background:#eeece5;padding:5px 7px;border-radius:5px}.idea-card button{margin-top:12px;align-self:flex-start;border:0;background:transparent;color:#816637;font-size:10px;font-weight:800;padding:0}.task-area{display:grid;grid-template-columns:1fr 250px;gap:14px}.task-list{display:flex;flex-direction:column;gap:8px}.task-row{display:flex;align-items:center;gap:10px;background:#f8f6f0;color:var(--ink);border-radius:10px;padding:11px 12px}.task-check{width:17px;height:17px;accent-color:#9d8458;flex:none}.task-text{font-size:10px;flex:1}.task-row.done .task-text{text-decoration:line-through;color:#9da39a}.task-tag{font-size:8px;color:#87918a;border:1px solid #d7d6cd;padding:4px 6px;border-radius:5px}.task-remove{border:0;background:transparent;color:#9aa199;font-size:14px}.task-add{display:flex;gap:7px;margin-top:10px}.task-add input{flex:1;min-width:0;background:#111c24;border:1px solid #ffffff20;border-radius:8px;padding:10px;color:#fff;font-size:10px}.task-side{background:#293740;border-radius:13px;padding:16px}.task-side strong{display:block;font-size:29px;font-weight:500}.task-side span{font-size:9px;color:#b1bdb4}.progress-line{height:6px;background:#ffffff1c;border-radius:9px;overflow:hidden;margin:12px 0}.progress-line i{display:block;height:100%;background:var(--gold2);width:0;transition:.3s}.task-side p{font-size:9px;color:#b1bdb4;line-height:1.6;margin:0}
+/* progress */
+.progress-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.diary-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.diary-form .field textarea{min-height:82px}.range-wrap{display:flex;align-items:center;gap:10px}.range-wrap input{accent-color:#9eb66e;flex:1}.range-value{font-size:11px;font-weight:800;color:var(--gold2);min-width:22px}.diary-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.log-list{display:flex;flex-direction:column;gap:7px;max-height:250px;overflow:auto}.log-item{padding:10px 12px;border:1px solid #ffffff13;background:#ffffff07;border-radius:9px}.log-item strong{display:block;font-size:10px}.log-item span{font-size:9px;color:#a6b1a9}.empty{padding:22px;text-align:center;color:#aab4ad;font-size:10px;border:1px dashed #ffffff25;border-radius:11px}.chart-tools{display:flex;gap:5px}.chart-tools button{border:1px solid #ffffff20;background:transparent;color:#aeb8af;border-radius:6px;font-size:8px;padding:5px 8px}.chart-tools button.active{background:#ffffff15;color:#f6e9ca;border-color:#9eb66e}.chart{height:190px;width:100%;display:block;margin-top:10px}.chart-legend{display:flex;justify-content:space-between;color:#9eaaa2;font-size:8px;margin-top:4px}.chart-note{font-size:9px;color:#aab5ae;margin-top:12px;line-height:1.6}
+/* review + share */
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.review-card{background:#f8f6f0;border-radius:12px;padding:14px;color:var(--ink);border:1px solid #e4dfd4}.review-card span{font-size:8px;color:#967a4d;font-weight:900;letter-spacing:.13em}.review-card h5{font-size:12px;margin:8px 0}.review-card p{font-size:9px;color:#77817a;line-height:1.8;margin:0}.demo-note{border-left:2px solid var(--gold);padding:8px 11px;font-size:9px;color:#b6c0b8;line-height:1.7;margin-top:13px;background:#ffffff06}.share-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.share-preview{background:linear-gradient(145deg,#263640,#101a21);border:1px solid #ffffff20;border-radius:15px;padding:20px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.share-preview:after{content:"G";position:absolute;font-family:Georgia,serif;font-size:190px;right:-8px;bottom:-69px;color:#ffffff08}.share-brand{font-size:9px;letter-spacing:.18em;color:#c6ae7a;font-weight:900}.share-preview h4{position:relative;z-index:1;font-size:22px;line-height:1.25;max-width:280px;margin:20px 0 8px}.share-preview p{font-size:10px;color:#bac6be;max-width:280px;position:relative;z-index:1}.share-bottom{display:flex;justify-content:space-between;align-items:end;position:relative;z-index:1}.share-bottom strong{font-size:21px;font-weight:500}.share-bottom span{font-size:8px;color:#a9b5ae}.share-fields{display:flex;flex-direction:column;gap:9px}.share-fields input,.share-fields textarea{width:100%;background:#111c24;border:1px solid #ffffff1b;border-radius:9px;padding:10px;color:#fff;font-size:10px}.share-fields textarea{min-height:70px;resize:vertical}.share-buttons{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+/* footer */
+.footer{padding:42px 0;background:#0c141a;color:#e7e8df}.footer-grid{display:flex;align-items:flex-start;justify-content:space-between;gap:26px}.footer p{max-width:430px;color:#9eaaa2;font-size:10px;line-height:1.8}.footer-links{display:flex;gap:19px;color:#b3beb4;font-size:10px}.disclaimer{border-top:1px solid #ffffff1b;margin-top:28px;padding-top:17px;color:#88958d;font-size:9px;line-height:1.8}.toast{position:fixed;z-index:100;bottom:24px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f8f6f0;color:#19242a;border:1px solid #c9b78f;box-shadow:var(--shadow);padding:11px 16px;border-radius:999px;font-size:11px;font-weight:750;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-bottom{display:none}
+@media(max-width:980px){.hero-grid{gap:25px}.hero-visual{min-height:360px}.work-shell{grid-template-columns:1fr}.side-nav{position:static;display:flex;overflow:auto;gap:5px;padding:8px}.side-label,.side-foot{display:none}.side-link{white-space:nowrap;margin:0;padding:9px 12px}.work-grid{grid-template-columns:1fr 1fr}.task-area{grid-template-columns:1fr 210px}}
+@media(max-width:700px){.wrap{width:min(100% - 30px,560px)}.nav{height:65px}.navlinks{display:none;position:absolute;top:65px;left:0;right:0;background:#f3f0e9;padding:15px 22px 20px;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.mobile-menu{display:block}.navright .mode-pill{display:none}.navright .btn{padding:9px 13px;font-size:10px}.brand{font-size:15px}.brand-mark{width:34px;height:34px}.hero{padding:54px 0 50px}.hero-grid{grid-template-columns:1fr;gap:18px}.hero h1{font-size:clamp(40px,12vw,58px)}.hero-copy{font-size:13px}.hero-visual{min-height:320px;margin:0 -4px}.dashboard-preview{width:94%;padding:18px}.preview-floating{right:-2px;bottom:6px;width:160px}.orb{width:260px;height:260px}.strip-grid{grid-template-columns:1fr 1fr}.strip-item{padding:14px 10px;border-bottom:1px solid var(--line)}.strip-item:first-child{padding-left:10px}.strip-item:nth-child(2){border-right:0}.strip-item:nth-child(3),.strip-item:nth-child(4){border-bottom:0}.section{padding:64px 0}.section-head{display:block;margin-bottom:24px}.section-head p{margin-top:13px}.method-grid{grid-template-columns:1fr 1fr}.method-card{min-height:180px;padding:16px}.method-card h3{margin-top:22px;font-size:14px}.method-card p{font-size:10px}.workspace{padding:64px 0}.work-shell{gap:12px}.side-nav{margin:0 -2px}.work-top{align-items:flex-start}.work-title h3{font-size:22px}.work-date{font-size:8px}.work-grid,.progress-grid,.share-grid{grid-template-columns:1fr}.small-stat-grid{grid-template-columns:1fr 1fr}.panel{padding:16px}.field-grid{gap:9px}.field input,.field select,.field textarea{padding:10px;font-size:10px}.idea-grid{grid-template-columns:1fr}.idea-card{min-height:unset}.task-area{grid-template-columns:1fr}.task-side{order:-1}.review-grid{grid-template-columns:1fr}.diary-form{grid-template-columns:1fr}.diary-form .field.full{grid-column:auto}.chart{height:170px}.footer-grid{display:block}.footer-links{margin-top:20px;flex-wrap:wrap}.mobile-bottom{display:block;position:fixed;bottom:0;left:0;right:0;padding:9px 10px calc(9px + env(safe-area-inset-bottom));background:#111b23f0;backdrop-filter:blur(12px);z-index:40;border-top:1px solid #ffffff20}.mobile-bottom-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.mobile-bottom a{text-align:center;color:#c4ccc5;font-size:8px;padding:4px}.mobile-bottom a span{display:block;font-size:15px;margin-bottom:2px}.footer{padding-bottom:82px}}
+@media(max-width:380px){.hero-actions .btn{width:100%}.method-grid{gap:8px}.method-card{padding:13px}.small-stat strong{font-size:20px}.task-row{gap:7px}.task-tag{display:none}}
+
+
+/* =========================================================
+   G/PLAN TERMINAL THEME — Bloomberg-terminal-inspired UI
+   Dense information hierarchy, near-black canvas, amber/green
+   signal colors, square geometry and monospaced metadata.
+   ========================================================= */
+:root{
+  --ink:#080b0a;--ink2:#0e1311;--paper:#090d0b;--paper2:#101613;--white:#edf2e9;
+  --muted:#879188;--muted2:#aab3a9;--gold:#a9bd79;--gold2:#c2d49b;
+  --line:#28332d;--darkline:#28332d;--green:#a7cf42;--red:#ff6b5f;--blue:#55b8d0;
+  --shadow:0 16px 42px rgba(0,0,0,.42);--radius:3px;
+}
+html{background:#080b0a;scroll-padding-top:96px}
+body{background:#080b0a;color:#e8eee6;font-family:Inter,Pretendard,"Noto Sans KR",system-ui,sans-serif;line-height:1.48}
+::selection{background:#a9bd79;color:#080b0a}
+.wrap{width:min(1440px,calc(100% - 44px))}
+.serif{font-family:Inter,Pretendard,"Noto Sans KR",system-ui,sans-serif;font-weight:800;letter-spacing:-.055em}
+.eyebrow,.panel-kicker,.side-label,.preview-label,.preview-tag,.work-title small,.terminal-utility,.strip-item b,.method-num,.idea-cat,.task-tag,.chart-tools button,.share-brand,.share-bottom span,.disclaimer{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.eyebrow{color:#a9bd79;font-size:9px;letter-spacing:.13em}
+.btn{border-radius:2px;box-shadow:none;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;text-transform:uppercase;letter-spacing:.025em;font-size:10px;padding:11px 15px}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn-dark{background:#a9bd79;color:#090d0b;border:1px solid #a9bd79}
+.btn-dark:hover{background:#c2d49b}
+.btn-gold{background:#a9bd79;color:#090d0b;border:1px solid #a9bd79}
+.btn-light{background:#0c120f;color:#cbd4ca;border:1px solid #435047}
+.btn-light:hover{background:#151e19;border-color:#a9bd79}
+.terminal-utility{background:#050706;color:#9aa69b;border-bottom:1px solid #29332c;font-size:8px;letter-spacing:.1em}
+.terminal-utility-inner{min-height:28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.terminal-utility-left,.terminal-utility-right{display:flex;align-items:center;gap:13px;white-space:nowrap}
+.terminal-mark{color:#a9bd79;font-weight:900;font-size:11px}
+.terminal-sep{color:#48544b}.terminal-dim{color:#6d786f}
+.terminal-utility-right{color:#7f8c81}.terminal-utility-right span{display:flex;align-items:center;gap:6px}
+.terminal-led{width:6px;height:6px;border-radius:50%;background:#a7cf42;box-shadow:0 0 8px #a7cf4280}
+.header{background:#090d0bf2;border-bottom:1px solid #29332c;backdrop-filter:blur(14px)}
+.nav{height:62px}
+.brand{color:#f0f2e9;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;letter-spacing:.02em}
+.brand-mark{width:31px;height:31px;border-radius:2px;background:#a9bd79;color:#080b0a;box-shadow:none;font-family:ui-monospace,monospace;font-size:17px;font-weight:900}
+.brand small{font-family:ui-monospace,monospace;color:#879187;font-size:7px;letter-spacing:.13em}
+.navlinks{gap:20px;color:#9aa69b;font-family:ui-monospace,monospace;font-size:9px;letter-spacing:.07em}
+.navlinks a:hover{color:#a9bd79}
+.mode-pill{border-radius:2px;background:#101811;border:1px solid #3d552b;color:#b3d56a;font-family:ui-monospace,monospace;font-size:8px;padding:6px 9px}
+.mode-dot{background:#a7cf42;box-shadow:0 0 0 3px #a7cf421d}
+.mobile-menu{color:#e9eee6}
+.hero{padding:56px 0 50px;background:#0b100d;overflow:hidden;position:relative}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff06 1px,transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(90deg,#000,transparent 80%);pointer-events:none}
+.hero:after{content:"G/PLAN  •  BUILD 01";position:absolute;right:28px;top:18px;color:#536055;font:8px ui-monospace,monospace;letter-spacing:.15em}
+.hero-grid{position:relative;z-index:1;grid-template-columns:.85fr 1.15fr;gap:42px}
+.hero h1{font-family:Inter,Pretendard,"Noto Sans KR",sans-serif;font-size:clamp(42px,5.3vw,68px);line-height:1.08;letter-spacing:-.065em;color:#f0f3eb;margin:18px 0 17px}
+.hero h1 em{color:#a9bd79}
+.hero-copy{color:#a3afa4;font-size:12px;line-height:1.9;max-width:470px}
+.hero-foot{color:#7e8a80;font:8px ui-monospace,monospace;letter-spacing:.04em}
+.hero-foot .mode-dot{width:5px;height:5px}
+.hero-visual{min-height:350px;justify-content:flex-end}
+.orb{display:none}
+.dashboard-preview{width:100%;max-width:620px;border-radius:2px;padding:17px 18px;background:#080c0a;border:1px solid #475449;box-shadow:0 24px 56px #0009;transform:none;font-family:ui-monospace,monospace}
+.preview-top{border-bottom:1px solid #354037;padding-bottom:11px}
+.preview-brand{font:800 9px ui-monospace,monospace;color:#f2f4ec;letter-spacing:.13em}
+.preview-tag{border:1px solid #48563a;border-radius:1px;color:#c2d49b;padding:4px 7px;font-size:7px}
+.terminal-preview-head{display:flex;justify-content:space-between;gap:10px;margin:13px 0 10px;color:#8d9a8d;font:8px ui-monospace,monospace;letter-spacing:.09em}
+.terminal-preview-head span:last-child{color:#a7cf42}
+.terminal-preview-title{font:10px ui-monospace,monospace;letter-spacing:.18em;color:#87958a;line-height:1.65;margin:10px 0 13px}
+.terminal-preview-title b{color:#f1f4eb;font-size:21px;letter-spacing:.04em}
+.terminal-preview-table{border-top:1px solid #2b372e}
+.terminal-preview-row{display:grid;grid-template-columns:1fr 1.55fr .65fr;gap:12px;align-items:center;padding:10px 4px;border-bottom:1px solid #202a23;color:#bdc7bc;font:9px ui-monospace,monospace}
+.terminal-preview-columns{color:#738174;font-size:7px;letter-spacing:.1em;padding-top:8px;padding-bottom:8px}
+.terminal-preview-row>span:first-child{color:#c2d49b}
+.terminal-preview-row b{font-size:8px;font-weight:700;text-align:right}
+.state-on{color:#a7cf42}.state-review{color:#c2d49b}.state-muted{color:#7d8980}
+.terminal-preview-foot{display:flex;justify-content:space-between;gap:8px;margin-top:13px;color:#718075;font:7px ui-monospace,monospace;letter-spacing:.08em}
+.preview-floating{right:-10px;bottom:-8px;width:180px;border-radius:2px;background:#141c16;color:#e9eee6;border:1px solid #4a594b;box-shadow:0 14px 32px #0008;transform:none;padding:12px}
+.preview-floating b{font:800 9px ui-monospace,monospace;color:#c2d49b;text-transform:uppercase;letter-spacing:.08em}
+.preview-floating p{color:#9eaa9e;font-size:8px;line-height:1.6}
+.mini-progress{background:#2b352c;border-radius:0}.mini-progress i{background:#a7cf42}
+.strip{background:#080c0a;border-top:1px solid #29332c;border-bottom:1px solid #29332c}
+.strip-grid{grid-template-columns:repeat(4,1fr)}
+.strip-item{padding:13px 18px;border-right:1px solid #29332c}
+.strip-item:first-child{padding-left:0}.strip-item b{color:#b7cb86;font-size:8px;letter-spacing:.11em}.strip-item span{color:#879388;font-size:9px}
+.section{padding:64px 0;background:#0a0e0c}
+.section-head{margin-bottom:24px}
+.section-head h2{color:#ecf0e8;font-size:clamp(27px,3vw,38px);line-height:1.15}
+.section-head p{color:#919d92;font-size:10px;line-height:1.8}
+.method-grid{grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #2d382f}
+.method-card{min-height:155px;padding:17px;border:0;border-right:1px solid #2d382f;border-radius:0;background:#0d130f}
+.method-card:last-child{border-right:0}
+.method-num{color:#a9bd79;font-size:18px}
+.method-arrow{color:#758174;right:15px;top:14px}
+.method-card h3{color:#e8eee5;font:700 11px ui-monospace,monospace;letter-spacing:.015em;margin:23px 0 7px}
+.method-card p{color:#8f9b90;font-size:9px;line-height:1.7}
+.workspace{background:#070a08;padding:64px 0 76px}
+.workspace:before{display:none}
+.workspace .section-head h2{color:#f0f2e9}
+.workspace .section-head p{color:#89958b}
+.workspace .eyebrow{color:#a9bd79}
+.work-shell{grid-template-columns:190px 1fr;gap:12px}
+.side-nav{top:88px;border:1px solid #2c382f;border-radius:2px;background:#0c120e;padding:8px}
+.side-label{color:#6f7d71;font-size:7px;letter-spacing:.14em}
+.side-link{border-radius:1px;color:#9aa69a;font:9px ui-monospace,monospace;padding:10px 9px;border-left:2px solid transparent;margin:1px 0}
+.side-link:hover,.side-link.active{background:#182019;color:#f0f2e9;border-left-color:#a9bd79}
+.side-link.active .side-ico{color:#a9bd79}.side-ico{color:#758376}
+.side-foot{border-top:1px solid #2b362e;color:#829084;font:8px ui-monospace,monospace}
+.side-foot strong{color:#c2d49b;font:800 8px ui-monospace,monospace}
+.work-top{padding:0 0 12px;border-bottom:1px solid #2a352d}
+.work-title small{color:#9aa69b;font:8px ui-monospace,monospace;letter-spacing:.12em}
+.work-title h3{font:700 20px Inter,Pretendard,sans-serif;color:#f0f2e9}
+.work-date{border:1px solid #354239;border-radius:1px;color:#aeb9ae;font:8px ui-monospace,monospace;padding:7px 9px}
+.small-stat-grid{gap:1px;background:#2c382f;border:1px solid #2c382f;margin:0 0 12px}
+.small-stat{border:0;border-radius:0;background:#0d130f;padding:12px}
+.small-stat strong{font:600 21px ui-monospace,monospace;color:#c2d49b;letter-spacing:-.04em}
+.small-stat span{font:7px ui-monospace,monospace;color:#849185;letter-spacing:.09em}
+.work-grid{gap:10px}
+.panel,.panel.light{background:#0d130f;color:#e7ede4;border:1px solid #303c33;border-radius:2px;padding:16px}
+.panel.light{background:#101712;color:#e7ede4}
+.panel-kicker{font-size:7px;letter-spacing:.14em;color:#b7cb86}
+.panel.light .panel-kicker{color:#b7cb86}
+.panel-title{margin:6px 0 12px;padding-bottom:8px;border-bottom:1px solid #263229}
+.panel-title h4{font:700 12px ui-monospace,monospace;color:#e8eee5;letter-spacing:.015em}
+.panel-title span{color:#849185;font:7px ui-monospace,monospace;letter-spacing:.06em}
+.panel.light .panel-title span{color:#849185}
+.field label,.panel.light .field label{color:#9eaa9e;font:8px ui-monospace,monospace}
+.field input,.field select,.field textarea,.panel.light .field input,.panel.light .field select,.panel.light .field textarea{background:#080d0a;border:1px solid #344137;border-radius:1px;color:#e9eee5;padding:10px 11px;font:10px ui-monospace,monospace}
+.field input:focus,.field select:focus,.field textarea:focus,.panel.light .field input:focus,.panel.light .field select:focus,.panel.light .field textarea:focus{border-color:#a9bd79;box-shadow:0 0 0 2px #a9bd791c}
+.field input::placeholder,.field textarea::placeholder{color:#637066}
+.field select option{background:#0d130f;color:#e9eee5}
+.helper,.panel.light .helper{color:#849185;font:8px ui-monospace,monospace;line-height:1.6}
+.briefing{background:#121a13;border:1px solid #46563a}
+.briefing:after{display:none}
+.briefing .panel-title h4{font:700 13px ui-monospace,monospace;color:#d2dfad}
+.briefing-copy{font-size:10px;color:#b3beb2;line-height:1.75}
+.briefing-actions{gap:6px}
+.wide-panel{margin-top:10px}
+.idea-grid{gap:1px;background:#303c33;border:1px solid #303c33}
+.idea-card{border:0;border-radius:0;background:#101712;color:#e8eee5;padding:14px;min-height:190px}
+.idea-cat{color:#b7cb86;font-size:7px;letter-spacing:.11em}
+.idea-card h5{font:700 11px ui-monospace,monospace;color:#edf1e8}
+.idea-card p{color:#929e92;font-size:9px;line-height:1.7}
+.idea-meta span{background:#19231a;color:#9eaa9e;border:1px solid #304033;border-radius:1px;font:7px ui-monospace,monospace;padding:4px 6px}
+.idea-card button{color:#c2d49b;font:8px ui-monospace,monospace}
+.task-area{grid-template-columns:1fr 210px;gap:10px}
+.task-row{background:#101712;color:#e5ebe2;border:1px solid #2c382f;border-radius:1px;padding:10px}
+.task-check{accent-color:#a7cf42}
+.task-text{font:9px ui-monospace,monospace;color:#c7d0c5}
+.task-row.done .task-text{color:#667268}
+.task-tag{border:1px solid #38453a;border-radius:1px;color:#8b998c}
+.task-remove{color:#839084}
+.task-add input,.share-fields input,.share-fields textarea{background:#080d0a;border:1px solid #344137;border-radius:1px;color:#e9eee5;font:9px ui-monospace,monospace;padding:10px}
+.task-side{background:#131b14;border:1px solid #384633;border-radius:1px;padding:14px}
+.task-side strong{color:#c2d49b;font:600 26px ui-monospace,monospace}
+.task-side span,.task-side p{color:#91a091;font:8px ui-monospace,monospace}
+.progress-line{background:#2a352c;border-radius:0}.progress-line i{background:#a7cf42}
+.progress-grid{gap:10px}
+.diary-form .field textarea{min-height:70px}
+.range-wrap input{accent-color:#a9bd79}.range-value{color:#c2d49b;font:10px ui-monospace,monospace}
+.log-item{border:1px solid #303b32;background:#101712;border-radius:1px}
+.log-item strong{color:#dce5d9;font:9px ui-monospace,monospace}.log-item span{color:#8d9a8e;font:8px ui-monospace,monospace}
+.empty{border:1px dashed #3a463c;border-radius:1px;color:#879488;font:9px ui-monospace,monospace}
+.chart-tools button{border:1px solid #3a463c;border-radius:1px;color:#9aa69a}
+.chart-tools button.active{background:#26301f;color:#c2d49b;border-color:#a9bd79}
+.chart-legend{color:#849185;font:7px ui-monospace,monospace}
+.review-grid{gap:1px;background:#303c33;border:1px solid #303c33}
+.review-card{background:#101712;border:0;border-radius:0;padding:13px;color:#e6ede3}
+.review-card span{color:#b7cb86;font:7px ui-monospace,monospace;letter-spacing:.1em}
+.review-card h5{color:#e8eee5;font:700 10px ui-monospace,monospace}
+.review-card p{color:#919d92;font-size:8px}
+.demo-note{border-left:2px solid #a9bd79;background:#141a13;color:#aab5a8;font:8px ui-monospace,monospace}
+.share-grid{gap:10px}
+.share-preview{background:#0b100d;border:1px solid #596349;border-radius:1px;padding:18px}
+.share-preview:after{display:none}
+.share-brand{color:#c2d49b;font-size:8px}
+.share-preview h4{color:#eff3ea;font:800 19px Inter,Pretendard,sans-serif}
+.share-preview p{color:#9ba89b;font-size:9px}
+.share-bottom strong{color:#a7cf42;font:600 19px ui-monospace,monospace}
+.share-bottom span{color:#879489;font-size:7px}
+.share-fields{gap:8px}
+.footer{background:#050706;border-top:1px solid #2d382f;padding:32px 0;color:#e6ece3}
+.footer .brand-mark{background:#a9bd79!important;color:#080b0a}
+.footer p{color:#899689;font-size:9px}
+.footer-links{color:#a2aea2;font:8px ui-monospace,monospace}
+.disclaimer{border-color:#29342c;color:#758276;font-size:7px;line-height:1.8}
+.toast{background:#a9bd79;color:#080b0a;border:1px solid #c2d49b;border-radius:1px;box-shadow:0 8px 24px #0009;font:800 9px ui-monospace,monospace}
+.mobile-bottom{background:#080d0bf5;border-top:1px solid #354137}
+.mobile-bottom a{color:#aeb9ad;font:7px ui-monospace,monospace}
+.mobile-bottom a span{color:#b7cb86}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr 1fr}.work-shell{grid-template-columns:1fr}.side-nav{position:static}.side-link{border-left:0;border-bottom:2px solid transparent}.side-link.active{border-bottom-color:#a9bd79}.work-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){
+  .wrap{width:min(100% - 26px,560px)}
+  .terminal-utility-inner{min-height:25px}.terminal-utility-right span:nth-child(2){display:none}.terminal-utility-left,.terminal-utility-right{gap:7px;font-size:7px}
+  .nav{height:58px}.navlinks{top:58px;background:#090d0b;border-color:#29332c}.navlinks a{color:#c0c9bf}.brand{font-size:12px}.brand small{font-size:6px}.brand-mark{width:28px;height:28px}
+  .hero{padding:42px 0 38px}.hero-grid{grid-template-columns:1fr;gap:18px}.hero h1{font-size:clamp(38px,11vw,54px)}.hero-copy{font-size:11px}.hero-visual{min-height:280px;justify-content:center}.dashboard-preview{padding:13px}.terminal-preview-row{grid-template-columns:.85fr 1.3fr .6fr;gap:6px;font-size:7px;padding:8px 2px}.terminal-preview-title b{font-size:18px}.preview-floating{right:-4px;bottom:-10px;width:155px;padding:9px}
+  .hero-foot{font-size:7px;flex-wrap:wrap;gap:9px}.hero-actions .btn{font-size:9px}
+  .strip-grid{grid-template-columns:1fr 1fr}.strip-item{padding:10px 8px}.strip-item:first-child{padding-left:8px}.strip-item b{font-size:7px}.strip-item span{font-size:8px}
+  .section,.workspace{padding:48px 0}.section-head h2{font-size:29px}.section-head p{font-size:9px}
+  .method-grid{grid-template-columns:1fr 1fr}.method-card{min-height:135px;padding:12px}.method-card h3{font-size:9px;margin-top:18px}.method-card p{font-size:8px}.method-num{font-size:16px}
+  .work-shell{gap:9px}.side-nav{overflow:auto;white-space:nowrap}.side-link{font-size:8px;padding:8px}.work-top{align-items:flex-start}.work-title h3{font-size:18px}.work-date{font-size:7px;padding:6px 7px}
+  .small-stat-grid{grid-template-columns:1fr 1fr}.small-stat{padding:10px}.small-stat strong{font-size:18px}.small-stat span{font-size:6px}
+  .work-grid,.progress-grid,.share-grid{grid-template-columns:1fr}.panel{padding:13px}.panel-title h4{font-size:11px}.panel-title span{font-size:6px}.field-grid{gap:8px}.field input,.field select,.field textarea,.panel.light .field input,.panel.light .field select,.panel.light .field textarea{font-size:9px;padding:9px}
+  .idea-grid{grid-template-columns:1fr}.idea-card{min-height:unset}.task-area{grid-template-columns:1fr}.task-side{order:-1}
+  .review-grid{grid-template-columns:1fr}.diary-form{grid-template-columns:1fr}.chart{height:160px}.footer-grid{display:block}.footer-links{margin-top:16px;flex-wrap:wrap}.footer{padding-bottom:78px}
+}
+@media(max-width:380px){.terminal-utility-left span:nth-child(3),.terminal-utility-left span:nth-child(4){display:none}.hero-actions .btn{width:100%}.method-grid{gap:1px}.method-card{padding:10px}}
+
+
+/* Calm terminal accent: muted lime between green and yellow */
+:root{--terminal-accent:#a9bd79;--terminal-accent-bright:#c2d49b;--terminal-accent-soft:#7f9a59}
+.eyebrow,.hero h1 em,.terminal-mark,.terminal-preview-row>span:first-child,.strip-item b,.method-num,.side-link.active .side-ico,.side-foot strong,.panel-kicker,.idea-cat,.idea-card button,.task-side strong,.range-value,.review-card span,.share-brand{color:var(--terminal-accent)!important}
+.btn-dark,.btn-gold{background:var(--terminal-accent)!important;border-color:var(--terminal-accent)!important;color:#0a100b!important}
+.btn-dark:hover,.btn-gold:hover{background:var(--terminal-accent-bright)!important;border-color:var(--terminal-accent-bright)!important}
+.navlinks a:hover,.side-link:hover,.side-link.active,.chart-tools button.active{color:var(--terminal-accent-bright)!important}
+.side-link:hover,.side-link.active{border-left-color:var(--terminal-accent)!important}
+.side-link.active .side-ico{color:var(--terminal-accent)!important}
+.field input:focus,.field select:focus,.field textarea:focus,.panel.light .field input:focus,.panel.light .field select:focus,.panel.light .field textarea:focus{border-color:var(--terminal-accent)!important;box-shadow:0 0 0 2px #a9bd791c!important}
+.briefing{border-color:#48583b!important}.briefing .panel-title h4{color:var(--terminal-accent-bright)!important}
+.progress-line i,.mini-progress i{background:var(--terminal-accent)!important}
+.task-check,.range-wrap input{accent-color:var(--terminal-accent)!important}
+.chart-tools button.active{background:#27311f!important;border-color:var(--terminal-accent)!important}
+.demo-note{border-left-color:var(--terminal-accent)!important}
+.toast{background:var(--terminal-accent)!important;border-color:var(--terminal-accent-bright)!important;color:#0a100b!important}
+.brand-mark{background:var(--terminal-accent)!important;color:#0a100b!important}
+.footer .brand-mark{background:var(--terminal-accent)!important;color:#0a100b!important}
+.terminal-preview-row .state-review{color:var(--terminal-accent-bright)!important}
+.language-control{display:flex;align-items:center;gap:6px;padding:4px 6px;border:1px solid #344137;background:#0c120f;color:#819181;font:8px ui-monospace,monospace;letter-spacing:.08em}
+.language-control select{appearance:none;background:#0c120f;border:0;color:#dce5d7;font:9px ui-monospace,monospace;outline:none;cursor:pointer;padding:3px 15px 3px 3px;max-width:90px}
+.language-control select option{background:#0c120f;color:#e9eee5}
+@media(max-width:700px){.navright{gap:5px}.language-control{gap:3px;padding:3px}.language-control>span{display:none}.language-control select{font-size:8px;max-width:75px}.mode-pill{font-size:6px;padding:5px 6px}.navright>.btn{display:none}}
+
+
+/* ------------------------------------------------------------
+   GOD'S PLAN / PREMIUM GREEN FINANCIAL WORKSPACE
+   Bloomberg-inspired information hierarchy, not a retro terminal.
+   ------------------------------------------------------------ */
+:root{
+  color-scheme:dark;
+  --ink:#e8f0ea;
+  --ink2:#c9d6cc;
+  --paper:#07100b;
+  --paper2:#0b1710;
+  --white:#f3f7f3;
+  --muted:#91a397;
+  --muted2:#b2c0b6;
+  --gold:#16a34a;
+  --gold2:#22c55e;
+  --green:#22a06b;
+  --red:#df7777;
+  --blue:#84a9bc;
+  --line:#22362a;
+  --darkline:#293e31;
+  --shadow:0 18px 48px rgba(0,0,0,.24);
+  --terminal-accent:#16a34a;
+  --terminal-accent-bright:#22c55e;
+  --terminal-accent-soft:#166534;
+  --radius:18px;
+}
+html{background:#07100b;scroll-padding-top:94px}
+body{
+  background:
+    radial-gradient(ellipse at 88% 3%,rgba(22,163,74,.10),transparent 29%),
+    radial-gradient(ellipse at 8% 30%,rgba(23,72,42,.13),transparent 32%),
+    #07100b;
+  color:#e8f0ea;
+  font-family:Inter,Pretendard,"Noto Sans KR",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+::selection{background:rgba(34,197,94,.3);color:#fff}
+.wrap{width:min(1320px,calc(100% - 56px))}
+.terminal-utility{background:#050a07;color:#91a397;border-bottom:1px solid #1b2a20}
+.terminal-utility-inner{min-height:31px}
+.terminal-utility-left,.terminal-utility-right{color:#829588;font-size:9px;letter-spacing:.13em}
+.terminal-mark{color:#22c55e!important;font-weight:900}
+.terminal-sep{color:#304a38}
+.terminal-dim{color:#607466}
+.terminal-led{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.11)}
+.header{background:rgba(7,16,11,.88);border-bottom:1px solid #203328;backdrop-filter:blur(18px)}
+.nav{height:76px}
+.brand{color:#edf4ef;font-size:16px;letter-spacing:-.035em}
+.brand small{color:#829588;letter-spacing:.16em;font-size:8px}
+.brand-mark{background:linear-gradient(145deg,#1b8b46,#116333)!important;color:#f2fff5!important;border:1px solid #37a65d;box-shadow:0 8px 24px rgba(22,163,74,.15)}
+.navlinks{color:#91a397;gap:28px;font-size:11px;letter-spacing:.035em}
+.navlinks a{color:#91a397;transition:color .18s}
+.navlinks a:hover{color:#4ade80!important}
+.navright{gap:11px}
+.mode-pill{background:#0e2115;border:1px solid #285238;color:#a8c5b1}
+.mode-dot{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.13)}
+.language-control{background:#0b1710!important;border:1px solid #294033!important;color:#8fa294!important;border-radius:9px!important;padding:6px 9px!important;letter-spacing:.11em!important}
+.language-control select{background:transparent!important;color:#e3eee6!important;font-size:11px!important;max-width:105px}
+.language-control select option{background:#0b1710;color:#e3eee6}
+.btn{border-radius:9px;transition:transform .18s,border-color .18s,background .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-1px)}
+.btn-dark,.btn-gold{background:#16803d!important;border:1px solid #22934a!important;color:#f4fff6!important;box-shadow:0 8px 22px rgba(22,163,74,.14)}
+.btn-dark:hover,.btn-gold:hover{background:#199447!important;border-color:#31b45e!important;box-shadow:0 10px 24px rgba(22,163,74,.19)}
+.btn-light{background:#0b1710;border-color:#2b4133;color:#c6d3ca}
+.btn-light:hover{background:#102117;border-color:#3d694c;color:#eff8f1}
+.btn-small{font-size:11px;padding:9px 13px}
+.eyebrow,.panel-kicker,.idea-cat,.method-num,.share-brand,.range-value,.task-side strong{color:#39b861!important}
+.hero{
+  padding:82px 0 72px;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
+    radial-gradient(ellipse at 78% 20%,rgba(22,163,74,.12),transparent 34%),
+    linear-gradient(115deg,#08120c,#0a1710 58%,#08120c);
+  background-size:42px 42px,42px 42px,auto,auto;
+  border-bottom:1px solid #203328;
+  color:#e8f0ea;
+}
+.hero-grid{gap:58px}
+.hero h1{color:#edf5ef;font-family:Inter,Pretendard,"Noto Sans KR",sans-serif;font-weight:730;letter-spacing:-.065em;font-size:clamp(40px,5.1vw,68px);line-height:1.12}
+.hero h1 em{color:#35b65d!important}
+.hero-copy{color:#a4b4a9;font-size:14px;line-height:1.9;max-width:570px}
+.hero-foot{color:#829588;font-size:10px}
+.hero-visual{min-height:405px}
+.orb{width:330px;height:330px;background:radial-gradient(circle,rgba(34,197,94,.12),rgba(34,197,94,.015) 63%,transparent 70%);filter:none;opacity:1}
+.dashboard-preview{background:linear-gradient(150deg,#102016,#0a140e);border:1px solid #294634;border-radius:16px;box-shadow:0 28px 75px rgba(0,0,0,.42);transform:rotate(.4deg)}
+.preview-top{border-color:#2b4433}
+.preview-brand{color:#e1eee5}
+.preview-tag{color:#83a18d;border-color:#35513e;border-radius:5px}
+.terminal-preview-head,.terminal-preview-foot{color:#7f9485}
+.terminal-preview-title{color:#edf5ef}
+.terminal-preview-title b{color:#41ba66}
+.terminal-preview-row{border-color:#263c2e;color:#bdcbbf}
+.terminal-preview-row>span:first-child{color:#39b861!important}
+.terminal-preview-columns{color:#718879}
+.state-on{color:#4ade80!important}
+.state-review{color:#c4d3c8!important}
+.state-muted{color:#829588!important}
+.preview-floating{background:#102016;border:1px solid #2d4937;color:#dce9df;box-shadow:0 18px 45px rgba(0,0,0,.35)}
+.preview-floating p{color:#91a397}
+.mini-progress{background:#293d30}
+.mini-progress i{background:#16a34a!important}
+.strip{background:#09140d;border-top:1px solid #1d3023;border-bottom:1px solid #1d3023;color:#dce8df}
+.strip-grid{grid-template-columns:repeat(4,1fr)}
+.strip-item{border-color:#1d3023}
+.strip-item b{color:#38b860!important;font-size:10px;letter-spacing:.12em}
+.strip-item span{color:#91a397;font-size:11px}
+.section,.workspace{background:transparent;color:#e8f0ea;padding:84px 0}
+.section-head{margin-bottom:28px}
+.section-head h2{color:#edf5ef;font-size:clamp(30px,3.8vw,45px);line-height:1.2;letter-spacing:-.05em}
+.section-head p{color:#95a79a;font-size:13px;line-height:1.85;max-width:500px}
+.serif{font-family:Inter,Pretendard,"Noto Sans KR",sans-serif;font-weight:720;letter-spacing:-.055em}
+.method-grid{gap:12px}
+.method-card{background:linear-gradient(155deg,#0f1d14,#0b160f);border:1px solid #263b2d;border-radius:13px;min-height:198px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.method-card:hover{border-color:#3c7049;transform:translateY(-2px);background:linear-gradient(155deg,#122319,#0c1911)}
+.method-num{font-size:24px;font-weight:750}
+.method-arrow{color:#6b8874}
+.method-card h3{color:#e7f0e9;font-size:16px;letter-spacing:-.03em}
+.method-card p{color:#94a69a;font-size:12px;line-height:1.8}
+.workspace{padding-top:70px;border-top:1px solid #1c2e22}
+.work-shell{display:grid;grid-template-columns:218px minmax(0,1fr);gap:18px;align-items:start;background:transparent;border:0;box-shadow:none}
+.side-nav{position:sticky;top:98px;background:linear-gradient(180deg,#0d1a12,#09130d);border:1px solid #24392b;border-radius:13px;padding:15px;box-shadow:0 14px 38px rgba(0,0,0,.17)}
+.side-label{color:#688070;font-size:9px;letter-spacing:.16em;padding:7px 10px 13px}
+.side-link{border-left:2px solid transparent;border-radius:6px;color:#91a397;padding:11px 10px;font-size:11px}
+.side-link:hover,.side-link.active{background:rgba(22,163,74,.10);border-left-color:#22a34f!important;color:#e2f0e5!important}
+.side-link.active .side-ico{color:#4ade80!important}
+.side-ico{color:#718879}
+.side-foot{background:#0a150e;border:1px solid #24392b;border-radius:8px;color:#85998b;font-size:10px;line-height:1.7;margin-top:18px;padding:12px}
+.side-foot strong{color:#39b861!important;display:block;font-size:9px;letter-spacing:.1em;margin-bottom:6px}
+.work-main{min-width:0;background:transparent}
+.work-top{padding:7px 2px 18px;border-bottom:1px solid #1f3326;margin-bottom:16px}
+.work-title small{color:#6e8777;font-size:9px;letter-spacing:.14em}
+.work-title h3{color:#edf5ef;font-size:24px;font-weight:700;letter-spacing:-.04em}
+.work-date{background:#0d1b12;border:1px solid #2a4232;color:#a9b9ad;border-radius:7px}
+.small-stat-grid{gap:10px;margin-bottom:14px}
+.small-stat{background:linear-gradient(145deg,#102016,#0c1710);border:1px solid #263d2d;border-radius:10px;padding:15px 16px}
+.small-stat strong{color:#edf5ef;font-size:23px;font-weight:720}
+.small-stat span{color:#7f9586;font-size:9px;letter-spacing:.1em}
+.work-grid{gap:13px;margin-bottom:13px}
+.panel,.panel.light,.stat{
+  background:linear-gradient(155deg,rgba(15,29,20,.98),rgba(10,20,14,.98))!important;
+  color:#e8f0ea!important;
+  border:1px solid #263d2d!important;
+  border-radius:13px!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.16)!important;
+}
+.panel{padding:20px}
+.panel.light{background:linear-gradient(155deg,#101f15,#0b170f)!important}
+.panel-title h4,.panel h3{color:#eaf2ec!important}
+.panel-title span,.panel-sub{color:#789080!important}
+.panel-kicker{font-size:9px;letter-spacing:.15em;font-weight:800}
+.briefing{background:linear-gradient(145deg,#10251a,#0c1b12)!important;border-color:#2c5738!important}
+.briefing .panel-title h4{color:#e4f3e7!important}
+.briefing-copy{color:#a6b8aa;line-height:1.85}
+.briefing-actions{gap:8px}
+.field label{color:#b9c9bd!important;font-size:11px}
+.field input,.field textarea,.field select,.api-input,.panel.light .field input,.panel.light .field select,.panel.light .field textarea{
+  width:100%;background:#08120c!important;border:1px solid #2b4132!important;color:#e6eee8!important;
+  border-radius:8px!important;padding:11px 12px;outline:none;box-shadow:none;
+}
+.field input::placeholder,.field textarea::placeholder{color:#627768!important}
+.field input:focus,.field select:focus,.field textarea:focus,.panel.light .field input:focus,.panel.light .field select:focus,.panel.light .field textarea:focus{
+  border-color:#269b4d!important;box-shadow:0 0 0 3px rgba(22,163,74,.12)!important
+}
+.field select option{background:#0b1710;color:#e6eee8}
+.helper{color:#829789!important;font-size:10px;line-height:1.7}
+.form-row{border-top:1px solid #203528}
+.idea-grid{gap:12px}
+.idea-card{background:linear-gradient(155deg,#102016,#0b160f);border:1px solid #273e2e;border-radius:11px;padding:17px}
+.idea-card:hover{border-color:#3c7049;transform:translateY(-2px)}
+.idea-card h5{color:#e7f0e9;font-size:15px}
+.idea-card p{color:#93a69a;font-size:11px;line-height:1.75}
+.idea-meta span{color:#809488;background:#13241a;border:1px solid #263d2d;border-radius:5px}
+.idea-card button{background:transparent;border:0;border-top:1px solid #263d2d;padding:12px 0 0;color:#39b861!important;font-size:10px;font-weight:800;text-align:left}
+.idea-card button:hover{color:#6be28a!important}
+.wide-panel{margin-top:13px}
+.task-area{gap:20px}
+.task-list{display:grid;gap:7px}
+.task-row{background:#0b1710;border:1px solid #263b2d;border-radius:8px;padding:11px 12px;color:#dce8df}
+.task-row.done{opacity:.72}
+.task-text{color:#d2dfd6;font-size:12px}
+.task-tag{color:#7fa18a;background:#102319;border:1px solid #294c35;border-radius:4px}
+.task-remove{color:#789080}
+.task-add input{background:#08120c;border:1px solid #2b4132;color:#e6eee8;border-radius:8px;padding:11px}
+.task-side{background:#0c1a11;border:1px solid #27412f;border-radius:10px;padding:16px}
+.task-side strong{font-size:35px;color:#37b85f!important}
+.task-side span,.task-side p{color:#91a397}
+.progress-line{background:#24392b}
+.progress-line i{background:#16a34a!important}
+.empty{color:#718779;background:#0a150e;border:1px dashed #2b4132;border-radius:8px;padding:18px}
+.progress-grid{gap:13px}
+.chart{background:#09140d;border:1px solid #23372a;border-radius:8px;padding:10px}
+.chart-legend{color:#839789}
+.chart-tools button{background:#0a160e;border:1px solid #2b4132;color:#93a699;border-radius:5px;padding:5px 8px}
+.chart-tools button.active{background:rgba(22,163,74,.14)!important;border-color:#16803d!important;color:#67dc85!important}
+.range-wrap input,.task-check{accent-color:#16a34a!important}
+.range-value{color:#4bc56e!important}
+.log-list{display:grid;gap:7px}
+.log-item{background:#0a160e;border:1px solid #263b2d;border-radius:8px;color:#d6e2d9;padding:11px 13px}
+.log-item strong{color:#cfe0d3;font-size:11px}
+.log-item span{color:#8fa396;font-size:11px}
+.review-grid{gap:10px}
+.review-card{background:#0c1a11;border:1px solid #263d2d;border-radius:9px;padding:15px}
+.review-card span{color:#39b861!important;font-size:9px;letter-spacing:.12em}
+.review-card h5{color:#e4eee7}
+.review-card p{color:#8fa397;font-size:11px;line-height:1.7}
+.demo-note{background:#0c1a11;border:1px solid #263d2d;border-left:3px solid #16a34a!important;color:#9caf9f;border-radius:7px}
+.share-grid{gap:18px}
+.share-preview{background:linear-gradient(145deg,#102419,#09130d);border:1px solid #2d4b36;border-radius:12px;color:#e8f0ea;box-shadow:inset 0 0 0 1px rgba(255,255,255,.015)}
+.share-preview:before{border-color:#396047}
+.share-brand{color:#40bd66!important}
+.share-preview h4{color:#eff7f1}
+.share-preview p{color:#9cb0a1}
+.share-bottom{border-top:1px solid #2b4532;color:#98aa9d}
+.share-bottom strong{color:#4bc76d}
+.share-fields{gap:11px}
+.share-buttons{gap:7px}
+.disclaimer{border-top:1px solid #24372a;color:#74897a;font-size:10px;line-height:1.8}
+.footer{background:#050b07;border-top:1px solid #203328;color:#90a196;padding:48px 0 30px}
+.footer .brand{color:#e9f1eb!important}
+.footer .brand small{color:#829588!important}
+.footer p{color:#829588;max-width:560px;font-size:11px;line-height:1.8}
+.footer-links a{color:#94a69a}
+.footer-links a:hover{color:#4ade80}
+.mobile-bottom{background:rgba(6,13,8,.95);border-top:1px solid #263b2d;backdrop-filter:blur(14px)}
+.mobile-bottom-inner a{color:#91a397}
+.mobile-bottom-inner a:hover{color:#4ade80}
+.toast{background:#16803d!important;border:1px solid #39ad5b!important;color:#fff!important;box-shadow:0 10px 30px rgba(0,0,0,.28)}
+/* Keep the language selector and dense navigation comfortable on small screens. */
+@media(max-width:1000px){
+ .wrap{width:min(100% - 36px,760px)}
+ .navlinks{gap:14px}
+ .work-shell{grid-template-columns:1fr}
+ .side-nav{position:relative;top:auto;display:flex;align-items:center;gap:5px;overflow-x:auto;white-space:nowrap;padding:8px}
+ .side-label,.side-foot{display:none}
+ .side-link{flex:0 0 auto;border-left:0;border-bottom:2px solid transparent}
+ .side-link.active,.side-link:hover{border-left:0!important;border-bottom-color:#22a34f!important}
+}
+@media(max-width:700px){
+ .wrap{width:calc(100% - 28px)}
+ .terminal-utility-right span:nth-child(n+2){display:none}
+ .nav{height:66px}
+ .navlinks{display:none}
+ .navright{gap:6px}
+ .mode-pill{font-size:7px;padding:5px 7px}
+ .language-control{padding:4px 6px!important}
+ .language-control select{font-size:9px!important;max-width:77px}
+ .hero{padding:52px 0 48px}
+ .hero-grid{grid-template-columns:1fr;gap:25px}
+ .hero h1{font-size:clamp(37px,10vw,53px)}
+ .hero-copy{font-size:12px}
+ .hero-visual{min-height:300px}
+ .dashboard-preview{width:100%;padding:16px}
+ .preview-floating{right:0;bottom:0;max-width:190px}
+ .strip-grid{grid-template-columns:1fr 1fr}
+ .strip-item{padding:12px 8px}
+ .section,.workspace{padding:54px 0}
+ .section-head{display:block}
+ .section-head h2{font-size:30px}
+ .section-head p{font-size:11px;margin-top:12px}
+ .method-grid{grid-template-columns:1fr 1fr}
+ .method-card{padding:14px;min-height:155px}
+ .method-card h3{font-size:12px;margin-top:16px}
+ .method-card p{font-size:10px}
+ .work-top{align-items:flex-start}
+ .work-title h3{font-size:20px}
+ .small-stat-grid{grid-template-columns:1fr 1fr}
+ .work-grid,.progress-grid,.share-grid{grid-template-columns:1fr}
+ .panel{padding:15px}
+ .field-grid{grid-template-columns:1fr 1fr}
+ .field.full{grid-column:1/-1}
+ .diary-form{grid-template-columns:1fr 1fr}
+ .diary-form .field.full{grid-column:1/-1}
+ .task-area{grid-template-columns:1fr}
+ .task-side{order:-1}
+ .footer{padding-bottom:82px}
+}
+@media(max-width:420px){
+ .terminal-utility-left{font-size:7px}
+ .navright>.btn{display:none}
+ .mode-pill{font-size:6px}
+ .method-grid{gap:7px}
+ .method-card{padding:12px;min-height:150px}
+ .field-grid,.diary-form{grid-template-columns:1fr}
+ .field.full,.diary-form .field.full{grid-column:auto}
+ .share-buttons .btn{flex:1}
+}
+
+</style>
+</head>
+<body>
+<div class="terminal-utility" aria-label="서비스 상태">
+  <div class="wrap terminal-utility-inner">
+    <div class="terminal-utility-left"><span class="terminal-mark">G/</span><span>PERSONAL STRATEGY TERMINAL</span><span class="terminal-sep">/</span><span class="terminal-dim">PUBLIC PREVIEW</span></div>
+    <div class="terminal-utility-right"><span><i class="terminal-led"></i> SESSION ACTIVE</span><span>DATA: USER INPUT</span><span>AI: LOCAL RULESET</span></div>
+  </div>
+</div>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="God's plan 홈"><span class="brand-mark">G</span><span>GOD'S PLAN<small>PERSONAL INCOME STRATEGY OS</small></span></a>
+    <nav class="navlinks" id="navLinks"><a href="#method">HOW IT WORKS</a><a href="#workspace">WORKSPACE</a><a href="#progress">PROGRESS</a><a href="#share">SHARE STUDIO</a></nav>
+    <div class="navright"><label class="language-control" for="languageSelect"><span>LANG</span><select id="languageSelect" aria-label="Select language"><option value="ko">한국어</option><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select></label><span class="mode-pill"><i class="mode-dot"></i> PRIVATE SESSION</span><a class="btn btn-dark btn-small" href="#workspace">워크스페이스 열기 <span>↗</span></a><button class="mobile-menu" id="mobileMenu" aria-label="메뉴 열기">☰</button></div>
+  </div>
+</header>
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">G/PLAN &nbsp;·&nbsp; PERSONAL STRATEGY TERMINAL</div>
+      <h1 class="serif">생각을 분석하고<br>실행을 <em>통제</em>하다.</h1>
+      <p class="hero-copy">목표·시간·역량을 구조화하고, 가능한 선택지를 비교한 뒤 실행 과정을 추적하는 개인 전략 터미널. 막연한 아이디어를 검증 가능한 행동 단위로 전환하세요.</p>
+      <div class="hero-actions"><a class="btn btn-dark" href="#workspace">나의 전략 설계하기 <span>↗</span></a><a class="btn btn-light" href="#method">작동 방식 살펴보기</a></div>
+      <div class="hero-foot"><span><i class="mode-dot"></i> 가입 없이 바로 시작</span><span>·</span><span>기록은 직접 내보내고 관리</span></div>
+    </div>
+    <div class="hero-visual" aria-label="God's plan 대시보드 미리보기">
+      <div class="orb"></div>
+      <div class="dashboard-preview terminal-preview">
+        <div class="preview-top"><div class="preview-brand">G/PLAN &nbsp;·&nbsp; STRATEGY MONITOR</div><div class="preview-tag">LAYOUT SAMPLE</div></div>
+        <div class="terminal-preview-head"><span>WORKSPACE / 001</span><span>NO LIVE MARKET DATA</span></div>
+        <div class="terminal-preview-title">STRATEGY<br><b>CONTROL DESK</b></div>
+        <div class="terminal-preview-table">
+          <div class="terminal-preview-row terminal-preview-columns"><span>MODULE</span><span>FUNCTION</span><span>STATE</span></div>
+          <div class="terminal-preview-row"><span>01 / THINK</span><span>목표·조건 정리</span><b class="state-on">READY</b></div>
+          <div class="terminal-preview-row"><span>02 / SCAN</span><span>기회 후보 탐색</span><b class="state-review">REVIEW</b></div>
+          <div class="terminal-preview-row"><span>03 / EXEC</span><span>오늘의 행동 관리</span><b class="state-on">ACTIVE</b></div>
+          <div class="terminal-preview-row"><span>04 / LOG</span><span>실천 기록·검토</span><b class="state-muted">SESSION</b></div>
+        </div>
+        <div class="terminal-preview-foot"><span>ENVIRONMENT: BROWSER SESSION</span><span>BUILD 01.01</span></div>
+      </div>
+      <div class="preview-floating"><b>Daily momentum</b><p>작은 실행을 기록하고 다음 행동으로 연결하세요.</p><div class="mini-progress"><i></i></div></div>
+    </div>
+  </div>
+</section>
+<div class="strip"><div class="wrap strip-grid"><div class="strip-item"><b>01 / THINK</b><span>목표와 상황을 정리합니다.</span></div><div class="strip-item"><b>02 / DISCOVER</b><span>가능한 선택지를 탐색합니다.</span></div><div class="strip-item"><b>03 / EXECUTE</b><span>작은 행동으로 나눕니다.</span></div><div class="strip-item"><b>04 / IMPROVE</b><span>기록을 바탕으로 개선합니다.</span></div></div></div>
+<section class="section" id="method">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">A SIMPLE SYSTEM, BUILT FOR REAL LIFE</div><h2 class="serif">목표를 실행으로 바꾸는<br>네 가지 단계</h2></div><p>God's plan은 결과를 약속하는 서비스가 아닙니다. 생각을 정리하고 현실적인 행동으로 전환한 뒤, 실제로 무엇을 했는지 확인하는 과정을 돕습니다.</p></div>
+    <div class="method-grid">
+      <article class="method-card"><span class="method-num">01</span><span class="method-arrow">↗</span><h3>Define your direction</h3><p>관심 분야, 보유 기술, 사용 가능한 시간과 제약을 정리합니다.</p></article>
+      <article class="method-card"><span class="method-num">02</span><span class="method-arrow">↗</span><h3>Explore opportunities</h3><p>콘텐츠, 디지털 제품, 지식·기술 기반 프로젝트를 비교합니다.</p></article>
+      <article class="method-card"><span class="method-num">03</span><span class="method-arrow">↗</span><h3>Make it actionable</h3><p>큰 계획을 작고 구체적인 실행 과제로 바꿉니다.</p></article>
+      <article class="method-card"><span class="method-num">04</span><span class="method-arrow">↗</span><h3>Review & improve</h3><p>실행 기록을 보고 다음 주의 우선순위와 개선점을 찾습니다.</p></article>
+    </div>
+  </div>
+</section>
+<section class="workspace" id="workspace">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">YOUR PERSONAL COMMAND CENTER</div><h2 class="serif">전략을 설계하고,<br>오늘의 행동을 시작하세요.</h2></div><p>현재 버전은 별도 가입이나 서버 저장 없이 브라우저에서 작동합니다. 작성한 내용은 새로고침하면 사라질 수 있으니, 중요한 기록은 JSON 파일로 내보내 보관하세요.</p></div>
+    <div class="work-shell">
+      <aside class="side-nav" aria-label="워크스페이스 메뉴">
+        <div class="side-label">WORKSPACE</div>
+        <a class="side-link active" href="#overview"><span class="side-ico">⌂</span>Overview</a>
+        <a class="side-link" href="#design"><span class="side-ico">◈</span>Strategy Design</a>
+        <a class="side-link" href="#opportunities"><span class="side-ico">✳</span>Opportunity Radar</a>
+        <a class="side-link" href="#execution"><span class="side-ico">✓</span>Execution</a>
+        <a class="side-link" href="#progress"><span class="side-ico">⌁</span>Progress</a>
+        <a class="side-link" href="#review"><span class="side-ico">◉</span>Strategy Review</a>
+        <a class="side-link" href="#share"><span class="side-ico">↗</span>Share Studio</a>
+        <div class="side-foot"><strong>LOCAL SESSION MODE</strong>데이터는 이 브라우저 탭의 메모리에서만 처리됩니다. 저장하려면 직접 내보내세요.</div>
+      </aside>
+      <div class="work-main" id="overview">
+        <div class="work-top"><div class="work-title"><small>MONDAY / YOUR PRIVATE WORKSPACE</small><h3>Good to see you.</h3></div><div class="work-date" id="todayDate">TODAY</div></div>
+        <div class="small-stat-grid">
+          <div class="small-stat"><strong id="statTasks">0/0</strong><span>TASKS COMPLETED</span></div>
+          <div class="small-stat"><strong id="statDays">0</strong><span>DAYS RECORDED</span></div>
+          <div class="small-stat"><strong id="statMinutes">0m</strong><span>PRACTICE TIME</span></div>
+          <div class="small-stat"><strong id="statStreak">0</strong><span>DAY STREAK</span></div>
+        </div>
+        <div class="work-grid" id="design">
+          <section class="panel">
+            <div class="panel-kicker">01 / STRATEGY DESIGN</div><div class="panel-title"><h4>나의 설계 조건</h4><span>START WITH YOUR REALITY</span></div>
+            <div class="field-grid">
+              <div class="field full"><label for="goal">가장 이루고 싶은 목표</label><input id="goal" placeholder="예: 내가 가진 지식으로 작은 온라인 프로젝트 시작하기" maxlength="180"></div>
+              <div class="field"><label for="timeAvail">하루 사용 가능 시간</label><select id="timeAvail"><option value="15분">15분</option><option value="30분" selected>30분</option><option value="1시간">1시간</option><option value="2시간">2시간</option></select></div>
+              <div class="field"><label for="budget">초기 비용 범위</label><select id="budget"><option value="0원 / 무료 도구 중심">0원 / 무료 도구 중심</option><option value="소액">소액 (필요성 검토 후)</option><option value="아직 미정">아직 미정</option></select></div>
+              <div class="field"><label for="skills">현재 가진 기술·관심</label><input id="skills" placeholder="예: 글쓰기, 디자인, 금융 지식" maxlength="140"></div>
+              <div class="field"><label for="experience">현재 경험 수준</label><select id="experience"><option>처음 시작</option><option>기초 지식 있음</option><option>작은 프로젝트 경험 있음</option><option>꾸준히 실행 중</option></select></div>
+              <div class="field full"><label for="constraint">꼭 고려해야 할 제약 (선택)</label><input id="constraint" placeholder="예: 학업 우선, 평일에는 20분만 가능" maxlength="160"></div>
+            </div>
+            <div class="form-row"><span class="helper">현실적인 조건을 입력할수록 실행 계획이 구체적이 됩니다.</span><button class="btn btn-gold btn-small" id="generatePlan">전략 초안 만들기 ↗</button></div>
+          </section>
+          <section class="panel briefing">
+            <div class="panel-kicker">TODAY'S BRIEFING</div><div class="panel-title"><h4 id="briefTitle">작게 시작하고, 꾸준히 검증하세요.</h4><span>01 / FOCUS</span></div>
+            <div class="briefing-copy" id="briefText">먼저 관심 분야와 현재 가진 기술을 정리해 보세요. 첫 단계는 큰돈을 쓰거나 서비스를 시작하는 것이 아니라, 내가 누구에게 어떤 가치를 제공할 수 있는지 작게 확인하는 것입니다.</div>
+            <div class="briefing-actions"><button class="btn btn-gold btn-small" id="briefGenerate">오늘의 행동 제안 ↗</button><a class="btn btn-light btn-small" href="#execution" style="color:#f3f1e9;border-color:#ffffff35">실행 보드 보기</a></div>
+          </section>
+        </div>
+        <section class="panel wide-panel" id="opportunities">
+          <div class="panel-kicker">02 / OPPORTUNITY RADAR</div><div class="panel-title"><h4>가능한 프로젝트 탐색</h4><span>IDEAS TO TEST · NOT INCOME PROMISES</span></div>
+          <div class="idea-grid" id="ideaGrid">
+            <article class="idea-card"><span class="idea-cat">KNOWLEDGE / DIGITAL</span><h5>학습 자료·템플릿 만들기</h5><p>내가 정리한 지식이나 작업 과정을 다른 사람이 활용할 수 있는 자료로 구성합니다.</p><div class="idea-meta"><span>초기 비용 낮음</span><span>제작 중심</span><span>검증 필요</span></div><button data-idea="학습 자료·템플릿 만들기">이 아이디어로 계획하기 ↗</button></article>
+            <article class="idea-card"><span class="idea-cat">CONTENT / MEDIA</span><h5>주제형 콘텐츠 채널</h5><p>관심 주제를 정하고 짧은 글·영상·뉴스레터 등으로 유용한 콘텐츠를 쌓습니다.</p><div class="idea-meta"><span>시간 투자</span><span>꾸준함 필요</span><span>수익 불확실</span></div><button data-idea="주제형 콘텐츠 채널">이 아이디어로 계획하기 ↗</button></article>
+            <article class="idea-card"><span class="idea-cat">SKILL / SERVICE</span><h5>작은 문제 해결 프로젝트</h5><p>디자인, 리서치, 편집 등 가진 기술로 해결할 수 있는 작은 문제를 찾습니다.</p><div class="idea-meta"><span>기술 기반</span><span>포트폴리오</span><span>수요 확인</span></div><button data-idea="작은 문제 해결 프로젝트">이 아이디어로 계획하기 ↗</button></article>
+          </div>
+          <p class="helper" style="margin:13px 0 0">아이디어는 실험 후보입니다. 시장 수요, 비용, 관련 법규, 시간 부담을 확인하기 전에는 수익 가능성을 확정할 수 없습니다.</p>
+        </section>
+        <section class="panel wide-panel" id="execution">
+          <div class="panel-kicker">03 / EXECUTION BOARD</div><div class="panel-title"><h4>실행 보드</h4><span>MAKE PROGRESS VISIBLE</span></div>
+          <div class="task-area"><div><div class="task-list" id="taskList"><div class="empty">아직 등록된 과제가 없습니다. 전략 초안을 만들거나 직접 추가해 보세요.</div></div><div class="task-add"><input id="taskInput" placeholder="새 실행 과제를 입력하세요" maxlength="120"><button class="btn btn-gold btn-small" id="addTask">추가 +</button></div></div><div class="task-side"><strong id="taskPercent">0%</strong><span>현재 실행 진행률</span><div class="progress-line"><i id="taskBar"></i></div><p id="taskPrompt">오늘 할 수 있는 가장 작은 행동 하나부터 완료해 보세요.</p></div></div>
+        </section>
+        <section class="wide-panel" id="progress">
+          <div class="panel-title" style="margin:0 0 14px"><div><div class="panel-kicker">04 / PROGRESS TRACKER</div><h4 style="font-size:18px;margin:6px 0 0">실천 기록과 성장 흐름</h4></div><span>CONSISTENCY OVER HYPE</span></div>
+          <div class="progress-grid">
+            <div class="panel light">
+              <div class="panel-kicker">DAILY PRACTICE LOG</div><div class="panel-title"><h4>오늘 무엇을 했나요?</h4><span>SESSION ONLY</span></div>
+              <div class="diary-form">
+                <div class="field"><label for="diaryDate">기록 날짜</label><input type="date" id="diaryDate"></div>
+                <div class="field"><label for="diaryMinutes">실천 시간 (분)</label><input type="number" id="diaryMinutes" min="0" max="1440" value="15"></div>
+                <div class="field full"><label for="diaryActivity">오늘 실제로 한 일</label><textarea id="diaryActivity" placeholder="완료한 행동을 구체적으로 적어보세요."></textarea></div>
+                <div class="field full"><label for="diaryLearning">배운 점 / 다음에 할 일</label><textarea id="diaryLearning" placeholder="다음 행동을 더 쉽게 만들 개선점을 적어보세요."></textarea></div>
+                <div class="field full"><label for="diaryScore">오늘의 실천 수준</label><div class="range-wrap"><input type="range" id="diaryScore" min="1" max="5" value="3"><span class="range-value" id="scoreValue">3 / 5</span></div></div>
+              </div>
+              <div class="diary-actions"><button class="btn btn-dark btn-small" id="saveDiary">기록 저장</button><button class="btn btn-light btn-small" id="clearDiary">입력 지우기</button></div><p class="helper" id="diaryMessage" aria-live="polite" style="margin-top:10px">기록은 현재 브라우저 세션에만 보관됩니다.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-kicker">MOMENTUM OVER TIME</div><div class="panel-title"><h4>실천 성장 흐름</h4><div class="chart-tools"><button class="active" data-range="7">7D</button><button data-range="30">30D</button></div></div>
+              <div class="chart" id="growthChart"><div class="empty">기록이 쌓이면 그래프가 표시됩니다.</div></div><div class="chart-legend"><span>실천 기록 기준</span><span>성과·수익 그래프가 아닙니다</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px"><div class="small-stat" style="background:#ffffff08"><strong id="diaryAverage">—</strong><span>평균 실천 수준</span></div><div class="small-stat" style="background:#ffffff08"><strong id="diaryTotal">0m</strong><span>누적 실천 시간</span></div></div>
+            </div>
+          </div>
+          <div class="panel wide-panel"><div class="panel-title"><h4>최근 기록</h4><span id="historyCount">0 ENTRIES</span></div><div class="log-list" id="diaryHistory"><div class="empty">아직 저장된 기록이 없습니다.</div></div></div>
+          <div class="form-row" style="margin-top:12px"><span class="helper">기록을 다른 기기에서도 이어가려면 JSON 파일을 내보낸 뒤 다시 가져오세요.</span><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn btn-light btn-small" id="exportData">기록 내보내기 ↓</button><button class="btn btn-light btn-small" id="importDataBtn">기록 가져오기 ↑</button><input type="file" id="importDataFile" accept=".json,application/json" hidden></div></div>
+        </section>
+        <section class="panel wide-panel" id="review">
+          <div class="panel-kicker">05 / STRATEGY REVIEW</div><div class="panel-title"><h4>다각도로 계획 점검하기</h4><span>LOCAL PREVIEW · NO API CALL</span></div>
+          <p class="helper" style="margin:0 0 14px">아래 검토는 입력 내용을 바탕으로 브라우저에서 실행되는 규칙 기반 예시입니다. GPT·Claude·Gemini 모델이 실제 호출되거나 응답하는 기능은 아직 연결되어 있지 않습니다.</p>
+          <div class="review-grid" id="reviewGrid"><article class="review-card"><span>LOGIC CHECK</span><h5>논리와 구조</h5><p>목표와 제공할 가치가 구체적인지 확인합니다.</p></article><article class="review-card"><span>REALITY CHECK</span><h5>현실성과 위험</h5><p>시간·비용·학업 등 제약 조건을 점검합니다.</p></article><article class="review-card"><span>GROWTH CHECK</span><h5>개선과 확장</h5><p>작은 실험으로 수요를 검증하는 방법을 찾습니다.</p></article></div>
+          <div class="demo-note">실제 멀티-AI 분석은 서버에서 API 키를 안전하게 관리하는 구조를 추가한 뒤 활성화해야 합니다. 이 공개 웹사이트는 방문자에게 API 키를 요구하지 않습니다.</div>
+          <div style="margin-top:13px"><button class="btn btn-gold btn-small" id="runReview">계획 다각도 점검하기 ↗</button></div>
+        </section>
+        <section class="panel wide-panel" id="share">
+          <div class="panel-kicker">06 / SHARE STUDIO</div><div class="panel-title"><h4>오늘의 진행 상황 공유하기</h4><span>MAKE YOUR MOMENTUM VISIBLE</span></div>
+          <div class="share-grid">
+            <div class="share-preview" id="shareCard"><div class="share-brand">GOD'S PLAN · DAILY MOMENTUM</div><div><h4 class="serif" id="shareHeadline">작은 실행이<br>방향을 만듭니다.</h4><p id="shareSub">오늘의 한 걸음이 내일의 선택지를 만듭니다.</p></div><div class="share-bottom"><div><strong id="shareMetric">0 min</strong><span style="display:block">TODAY'S PRACTICE</span></div><span id="shareDay">YOUR PROGRESS · 01</span></div></div>
+            <div><div class="share-fields"><div class="field"><label for="shareTitle">공유 카드 제목</label><input id="shareTitle" value="작은 실행이 방향을 만듭니다."></div><div class="field"><label for="shareDesc">짧은 설명</label><textarea id="shareDesc">오늘의 한 걸음이 내일의 선택지를 만듭니다.</textarea></div><div class="field"><label for="shareGoal">오늘의 핵심 행동</label><input id="shareGoal" placeholder="예: 콘텐츠 주제 3개 조사하기"></div></div><div class="share-buttons"><button class="btn btn-gold btn-small" id="downloadShare">이미지 저장 ↓</button><button class="btn btn-light btn-small" id="copyShare">문구 복사</button><button class="btn btn-light btn-small" id="nativeShare">공유하기 ↗</button></div><p class="helper" style="margin-top:10px">공유 카드에는 직접 입력한 내용만 포함됩니다. 민감한 개인정보는 넣지 마세요.</p></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="wrap"><div class="footer-grid"><div><a class="brand" href="#top" style="color:#f3f1e9"><span class="brand-mark" style="background:#26343c">G</span><span>GOD'S PLAN<small style="color:#9ba79e">PERSONAL INCOME STRATEGY OS</small></span></a><p>막연한 목표를 실행 가능한 행동으로. God's plan은 학습, 아이디어 탐색, 실행 기록을 돕는 개인 전략 워크스페이스입니다.</p></div><div class="footer-links"><a href="#method">How it works</a><a href="#workspace">Workspace</a><a href="#progress">Progress</a><a href="#share">Share</a></div></div><div class="disclaimer">중요 안내: 이 서비스는 교육·기획·자기관리 목적의 도구이며 수익을 보장하지 않습니다. 패시브 인컴에도 초기 노동, 지속적인 관리, 비용, 실패 가능성이 존재합니다. 투자·금융 관련 내용은 일반적인 학습 정보이며 개인화된 투자 권유나 매수·매도 신호가 아닙니다. 실제 금융상품 거래, 계약, 결제, 서비스 가입 등 중요한 결정은 충분한 검토와 적절한 보호자·전문가의 조언 없이 진행하지 마세요. 이 웹 버전은 계정·서버 저장·실제 AI API 연결을 제공하지 않습니다.</div></div>
+</footer>
+<nav class="mobile-bottom"><div class="mobile-bottom-inner"><a href="#overview"><span>⌂</span>Overview</a><a href="#execution"><span>✓</span>Execute</a><a href="#progress"><span>⌁</span>Progress</a><a href="#share"><span>↗</span>Share</a></div></nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(()=>{
+  'use strict';
+  const $=id=>document.getElementById(id);
+  let tasks=[]; let diaries=[]; let chartRange=7; let toastTimer;
+  const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+  const fmtDate=(s)=>{if(!s)return '';const [y,m,d]=s.split('-');return `${y}.${m}.${d}`};
+  const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2400)}
+  function boot(){
+    $('diaryDate').value=today();$('todayDate').textContent=new Date().toLocaleDateString(currentDateLocale(),{year:'numeric',month:'long',day:'numeric',weekday:'short'}).toUpperCase();
+    $('mobileMenu').addEventListener('click',()=> $('navLinks').classList.toggle('open'));
+    document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=> $('navLinks').classList.remove('open')));
+    document.querySelectorAll('.side-link').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.side-link').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
+    $('generatePlan').addEventListener('click',generatePlan);$('briefGenerate').addEventListener('click',dailySuggestion);
+    $('addTask').addEventListener('click',addTask);$('taskInput').addEventListener('keydown',e=>{if(e.key==='Enter')addTask()});
+    $('taskList').addEventListener('change',e=>{if(e.target.matches('[data-task-check]')){const t=tasks.find(t=>t.id===e.target.dataset.taskCheck);if(t){t.done=e.target.checked;renderTasks()}}});
+    $('taskList').addEventListener('click',e=>{const b=e.target.closest('[data-task-remove]');if(b){tasks=tasks.filter(t=>t.id!==b.dataset.taskRemove);renderTasks()}});
+    $('ideaGrid').addEventListener('click',e=>{const b=e.target.closest('[data-idea]');if(b){$('goal').value=b.dataset.idea;$('goal').focus();generatePlan();location.hash='design'}});
+    $('saveDiary').addEventListener('click',saveDiary);$('clearDiary').addEventListener('click',clearDiary);$('diaryScore').addEventListener('input',()=> $('scoreValue').textContent=$('diaryScore').value+' / 5');
+    document.querySelectorAll('[data-range]').forEach(b=>b.addEventListener('click',()=>{chartRange=Number(b.dataset.range);document.querySelectorAll('[data-range]').forEach(x=>x.classList.toggle('active',x===b));renderProgress()}));
+    $('exportData').addEventListener('click',exportData);$('importDataBtn').addEventListener('click',()=>$('importDataFile').click());$('importDataFile').addEventListener('change',importData);
+    $('runReview').addEventListener('click',runReview);$('downloadShare').addEventListener('click',downloadShare);$('copyShare').addEventListener('click',copyShare);$('nativeShare').addEventListener('click',nativeShare);
+    ['shareTitle','shareDesc','shareGoal'].forEach(id=>$(id).addEventListener('input',renderSharePreview));
+    renderTasks();renderProgress();renderSharePreview();
+  }
+  function generatePlan(){
+    const goal=$('goal').value.trim()||'나의 관심 분야로 작은 프로젝트 시작하기';
+    const time=$('timeAvail').value;const budget=$('budget').value;const skills=$('skills').value.trim()||'현재 관심 있는 분야';const constraint=$('constraint').value.trim();
+    $('briefTitle').textContent='먼저 작은 가설부터 검증하세요.';
+    $('briefText').textContent=`목표는 “${goal}”입니다. 현재 조건은 하루 ${time}, 비용 범위는 ${budget}, 강점은 ${skills}입니다. 첫 단계에서는 결과를 크게 만들기보다, 누구의 어떤 문제를 해결할 수 있는지 확인하는 것이 좋습니다.${constraint?' 제약 조건도 반영하세요: '+constraint+'.':''} 유료 도구나 결제 없이 시작할 수 있는 조사·시제품·피드백부터 진행하세요.`;
+    const prefix=['목표를 한 문장으로 정리하고 완료 기준 정하기','관련된 사람 3명 또는 사례 3개 조사하기','해결할 문제와 제공할 가치를 한 문장으로 쓰기','무료 도구로 아주 작은 시제품 또는 샘플 만들기','사용자 피드백을 받고 개선점 1개 기록하기'];
+    tasks=prefix.map((label,i)=>({id:'t'+Date.now()+i,text:label,done:false}));
+    renderTasks();toast('현재 조건을 바탕으로 실행 초안을 만들었습니다.');
+  }
+  function dailySuggestion(){
+    const g=$('goal').value.trim();const skill=$('skills').value.trim();
+    const actions=[`관심 분야에서 해결할 문제 3개 적기`,`관련 사례 2개를 찾아 공통점 기록하기`,`내가 가진 기술(${skill||'관심 분야'})로 도울 수 있는 사람을 한 유형으로 좁히기`,`15분 동안 샘플이나 초안 하나 만들기`,`친구·가족 등 신뢰할 수 있는 사람에게 이해하기 쉬운지 피드백 받기`];
+    const action=actions[(new Date().getDate()+tasks.length)%actions.length];
+    $('briefTitle').textContent='오늘의 우선 행동';$('briefText').textContent=`${g?'목표 “'+g+'”를 향해 ':'오늘은 '}“${action}”을 해보세요. ${$('timeAvail').value} 안에 끝낼 수 있도록 범위를 줄이고, 완료 여부와 배운 점을 기록하세요.`;
+    if(!tasks.some(t=>t.text===action))tasks.unshift({id:'t'+Date.now(),text:action,done:false});renderTasks();toast('오늘의 행동을 제안했습니다.');
+  }
+  function addTask(){const text=$('taskInput').value.trim();if(!text){toast('추가할 과제를 입력해 주세요.');return}tasks.push({id:'t'+Date.now()+Math.random().toString(16).slice(2,6),text,done:false});$('taskInput').value='';renderTasks()}
+  function renderTasks(){const list=$('taskList');if(!tasks.length){list.innerHTML='<div class="empty">아직 등록된 과제가 없습니다. 전략 초안을 만들거나 직접 추가해 보세요.</div>'}else{list.innerHTML=tasks.map(t=>`<div class="task-row ${t.done?'done':''}"><input class="task-check" type="checkbox" data-task-check="${escapeHtml(t.id)}" ${t.done?'checked':''} aria-label="과제 완료"><span class="task-text">${escapeHtml(t.text)}</span><span class="task-tag">${t.done?'DONE':'ACTION'}</span><button class="task-remove" data-task-remove="${escapeHtml(t.id)}" aria-label="과제 삭제">×</button></div>`).join('')}
+    const done=tasks.filter(t=>t.done).length;const pct=tasks.length?Math.round(done/tasks.length*100):0;$('taskPercent').textContent=pct+'%';$('taskBar').style.width=pct+'%';$('statTasks').textContent=`${done}/${tasks.length}`;$('taskPrompt').textContent=tasks.length?(pct===100?'등록된 과제를 모두 완료했습니다. 다음 실험을 설계해 보세요.':'다음으로 완료할 수 있는 가장 작은 과제를 선택하세요.'):'오늘 할 수 있는 가장 작은 행동 하나부터 완료해 보세요.';
+  }
+  function saveDiary(){const date=$('diaryDate').value||today();const activity=$('diaryActivity').value.trim();const minutes=Math.max(0,Math.min(1440,Number($('diaryMinutes').value)||0));const learning=$('diaryLearning').value.trim();const score=Number($('diaryScore').value)||3;if(!activity){$('diaryMessage').textContent='실제로 한 일을 한 줄 이상 입력해 주세요.';return}const entry={date,activity,minutes,learning,score};const i=diaries.findIndex(x=>x.date===date);if(i>=0)diaries[i]=entry;else diaries.push(entry);diaries.sort((a,b)=>a.date.localeCompare(b.date));$('diaryMessage').textContent=`${fmtDate(date)} 기록을 현재 세션에 저장했습니다.`;renderProgress();toast('실천 기록이 저장되었습니다.')}
+  function clearDiary(){$('diaryActivity').value='';$('diaryLearning').value='';$('diaryMinutes').value='15';$('diaryScore').value='3';$('scoreValue').textContent='3 / 5';$('diaryMessage').textContent='입력 칸을 비웠습니다.'}
+  function streakCount(){const set=new Set(diaries.map(d=>d.date));let cur=new Date(today()+'T12:00:00');if(!set.has(today()))cur.setDate(cur.getDate()-1);let n=0;while(set.has(`${cur.getFullYear()}-${String(cur.getMonth()+1).padStart(2,'0')}-${String(cur.getDate()).padStart(2,'0')}`)){n++;cur.setDate(cur.getDate()-1)}return n}
+  function renderProgress(){const total=diaries.reduce((s,d)=>s+d.minutes,0);$('statDays').textContent=diaries.length;$('statMinutes').textContent=total>=60?`${Math.floor(total/60)}h ${total%60}m`:`${total}m`;$('statStreak').textContent=streakCount();$('diaryAverage').textContent=diaries.length?(diaries.reduce((s,d)=>s+d.score,0)/diaries.length).toFixed(1)+'/5':'—';$('diaryTotal').textContent=total>=60?`${Math.floor(total/60)}h ${total%60}m`:`${total}m`;$('historyCount').textContent=diaries.length+' ENTRIES';
+    const hist=$('diaryHistory');if(!diaries.length)hist.innerHTML='<div class="empty">아직 저장된 기록이 없습니다.</div>';else hist.innerHTML=[...diaries].reverse().slice(0,12).map(d=>`<div class="log-item"><strong>${fmtDate(d.date)} · 실천 수준 ${d.score}/5 · ${d.minutes}분</strong><span>${escapeHtml(d.activity)}${d.learning?' · 다음: '+escapeHtml(d.learning):''}</span></div>`).join('');renderChart()}
+  function renderChart(){const root=$('growthChart');const cutoff=new Date();cutoff.setDate(cutoff.getDate()-(chartRange-1));const minDate=`${cutoff.getFullYear()}-${String(cutoff.getMonth()+1).padStart(2,'0')}-${String(cutoff.getDate()).padStart(2,'0')}`;const entries=[...diaries].filter(d=>d.date>=minDate).sort((a,b)=>a.date.localeCompare(b.date));if(!entries.length){root.innerHTML='<div class="empty">기록이 쌓이면 그래프가 표시됩니다.</div>';return}const W=620,H=190,left=28,bottom=28,top=12,plotH=H-top-bottom,plotW=W-left-8;const max=5;const points=entries.map((d,i)=>{const x=left+(entries.length===1?plotW/2:i/(entries.length-1)*plotW);const y=top+(max-d.score)/max*plotH;return{x,y,d}});const line=points.map((p,i)=>(i?'L':'M')+p.x.toFixed(1)+' '+p.y.toFixed(1)).join(' ');const area=line+` L ${points[points.length-1].x} ${H-bottom} L ${points[0].x} ${H-bottom} Z`;const grid=[1,2,3,4,5].map(n=>{const y=top+(max-n)/max*plotH;return `<line x1="${left}" x2="${W-8}" y1="${y}" y2="${y}" stroke="#ffffff18" stroke-dasharray="3 5"/><text x="7" y="${y+3}" fill="#9ba79e" font-size="9">${n}</text>`}).join('');const circles=points.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="#b7cc8a" stroke="#1b2831" stroke-width="2"><title>${p.d.date}: ${p.d.score}/5</title></circle>`).join('');const labels=points.filter((p,i)=>entries.length<=7||i===0||i===points.length-1||i%Math.ceil(entries.length/5)===0).map(p=>`<text x="${p.x}" y="${H-8}" fill="#a9b4ac" font-size="8" text-anchor="middle">${p.d.date.slice(5)}</text>`).join('');root.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" role="img" aria-label="일별 실천 수준 그래프">${grid}<path d="${area}" fill="#9eb66e" opacity=".13"/><path d="${line}" fill="none" stroke="#b7cc8a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>${circles}${labels}</svg>`}
+  function exportData(){const profile={goal:$('goal').value,timeAvail:$('timeAvail').value,budget:$('budget').value,skills:$('skills').value,experience:$('experience').value,constraint:$('constraint').value};const payload={app:'GodsPlan',version:1,exportedAt:new Date().toISOString(),profile,tasks,diaries};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='gods-plan-data-'+today()+'.json';a.click();URL.revokeObjectURL(url);toast('JSON 파일로 내보냈습니다.')}
+  function importData(e){const file=e.target.files&&e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(data.app!=='GodsPlan'||!Array.isArray(data.tasks)||!Array.isArray(data.diaries))throw new Error('형식이 맞지 않습니다.');tasks=data.tasks.filter(t=>t&&typeof t.text==='string').map(t=>({id:String(t.id||'t'+Math.random()),text:t.text,done:!!t.done}));diaries=data.diaries.filter(d=>d&&/^\d{4}-\d{2}-\d{2}$/.test(d.date)&&typeof d.activity==='string').map(d=>({date:d.date,activity:d.activity,minutes:Number(d.minutes)||0,learning:String(d.learning||''),score:Math.min(5,Math.max(1,Number(d.score)||3))}));if(data.profile){for(const key of ['goal','timeAvail','budget','skills','experience','constraint'])if(typeof data.profile[key]==='string'&&$(key))$(key).value=data.profile[key]}renderTasks();renderProgress();toast('기록을 가져왔습니다.')}catch(err){toast('파일을 읽지 못했습니다. 올바른 God’s plan JSON인지 확인해 주세요.')}finally{$('importDataFile').value=''}};reader.readAsText(file)}
+  function runReview(){const goal=$('goal').value.trim();const time=$('timeAvail').value;const budget=$('budget').value;const skills=$('skills').value.trim();const constraint=$('constraint').value.trim();let logic=goal?`목표가 설정되어 있습니다: “${goal}”. 성공 여부를 판단할 수 있는 측정 기준과 대상 사용자를 한 문장씩 더 구체화해 보세요.`:'먼저 목표를 한 문장으로 적고, 누구에게 어떤 가치를 주려는지 명확히 해보세요.';let reality=`하루 ${time}, 초기 비용 ${budget} 조건을 기준으로 범위를 줄이세요. 처음에는 무료 도구와 짧은 조사·시제품 제작 위주로 구성하는 편이 부담을 줄입니다.`;if(constraint)reality+=` 입력한 제약(${constraint})을 일정에 반영해야 합니다.`;let growth=`${skills||'관심 분야'}와 연결되는 작은 샘플을 만들고, 신뢰할 수 있는 사람에게 이해하기 쉬운지 피드백을 받아보세요. 반응이 확인되기 전에는 유료화나 큰 지출을 서두르지 마세요.`;
+    $('reviewGrid').innerHTML=`<article class="review-card"><span>LOGIC CHECK</span><h5>논리와 구조</h5><p>${escapeHtml(logic)}</p></article><article class="review-card"><span>REALITY CHECK</span><h5>현실성과 위험</h5><p>${escapeHtml(reality)}</p></article><article class="review-card"><span>GROWTH CHECK</span><h5>개선과 확장</h5><p>${escapeHtml(growth)}</p></article>`;toast('브라우저 내 규칙 기반 점검을 완료했습니다.')}
+  function renderSharePreview(){const title=$('shareTitle').value.trim()||'작은 실행이 방향을 만듭니다.';const desc=$('shareDesc').value.trim()||'오늘의 한 걸음이 내일의 선택지를 만듭니다.';$('shareHeadline').textContent=title;$('shareSub').textContent=$('shareGoal').value.trim()?`오늘의 핵심 행동 · ${$('shareGoal').value.trim()}`:desc;$('shareMetric').textContent=(Number($('diaryMinutes').value)||15)+' min';$('shareDay').textContent=`YOUR PROGRESS · ${String(diaries.length+1).padStart(2,'0')}`}
+  function shareCopyText(){return `GOD'S PLAN\n${$('shareTitle').value}\n${$('shareDesc').value}\n${t('오늘의 행동:')} ${$('shareGoal').value||t('작은 실행 하나')}\n${$('shareMetric').textContent} · ${t('실행을 기록하고 다음 단계로 이어갑니다.')}`}
+  function copyShare(){const text=shareCopyText();if(navigator.clipboard?.writeText){navigator.clipboard.writeText(text).then(()=>toast('공유 문구를 복사했습니다.')).catch(()=>fallbackCopy(text))}else fallbackCopy(text)}
+  function fallbackCopy(text){const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();try{document.execCommand('copy');toast('공유 문구를 복사했습니다.')}catch(e){toast('복사할 수 없습니다. 내용을 직접 선택해 주세요.')}t.remove()}
+  async function nativeShare(){const text=shareCopyText();if(navigator.share){try{await navigator.share({title:"God's plan — Daily Progress",text})}catch(e){if(e.name!=='AbortError')toast('공유 기능을 사용할 수 없습니다.')}}else copyShare()}
+  function downloadShare(){const c=document.createElement('canvas');c.width=1200;c.height=675;const ctx=c.getContext('2d');const bg=ctx.createLinearGradient(0,0,1200,675);bg.addColorStop(0,'#0c1911');bg.addColorStop(1,'#07100b');ctx.fillStyle=bg;ctx.fillRect(0,0,1200,675);ctx.strokeStyle='#16a34a';ctx.globalAlpha=.65;ctx.lineWidth=2;ctx.strokeRect(44,44,1112,587);ctx.globalAlpha=1;ctx.fillStyle='#16a34a';ctx.font='bold 24px Arial';ctx.fillText("GOD'S PLAN  ·  DAILY MOMENTUM",82,112);ctx.fillStyle='#f6f2e8';ctx.font='54px Georgia';const title=$('shareTitle').value.trim()||'작은 실행이 방향을 만듭니다.';wrapCanvas(ctx,t(title),82,245,1000,74,2);ctx.fillStyle='#c9d4cc';ctx.font='24px Arial';const desc=$('shareGoal').value.trim()?`오늘의 핵심 행동 · ${$('shareGoal').value.trim()}`:($('shareDesc').value.trim()||'오늘의 한 걸음이 내일의 선택지를 만듭니다.');wrapCanvas(ctx,t(desc),84,395,1020,38,2);ctx.fillStyle='#16a34a';ctx.font='48px Georgia';ctx.fillText($('shareMetric').textContent,84,535);ctx.fillStyle='#a5b5a9';ctx.font='16px Arial';ctx.fillText(t('TODAY\'S PRACTICE'),84,575);ctx.fillText(`${t('YOUR PROGRESS')}  ·  ${String(diaries.length+1).padStart(2,'0')}`,900,575);const a=document.createElement('a');a.download='gods-plan-progress.png';a.href=c.toDataURL('image/png');a.click();toast('공유 카드를 이미지로 저장했습니다.')}
+  function wrapCanvas(ctx,text,x,y,maxWidth,lineHeight,maxLines){const words=String(text).split(' ');let line='',lines=[];for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);lines.slice(0,maxLines).forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));}
+
+  // Four-language interface. The selected locale is carried in the URL (?lang=ko|zh|ja|en),
+  // avoiding persistent browser storage for user privacy.
+  const LEXICON={"en":{"워크스페이스 열기":"Open workspace","메뉴 열기":"Open menu","생각을 분석하고":"ANALYZE IDEAS","실행을":"EXECUTION","통제":"DIRECT","하다.":"WITH CLARITY.","목표·시간·역량을 구조화하고, 가능한 선택지를 비교한 뒤 실행 과정을 추적하는 개인 전략 터미널. 막연한 아이디어를 검증 가능한 행동 단위로 전환하세요.":"A personal strategy terminal to structure goals, time, and capabilities, compare options, and track execution. Turn vague ideas into actions you can validate.","나의 전략 설계하기":"DESIGN MY STRATEGY","작동 방식 살펴보기":"HOW IT WORKS","가입 없이 바로 시작":"START WITHOUT SIGN-UP","기록은 직접 내보내고 관리":"EXPORT AND MANAGE YOUR DATA","목표·조건 정리":"Define goals & constraints","기회 후보 탐색":"Explore opportunities","오늘의 행동 관리":"Manage today’s actions","실천 기록·검토":"Log & review practice","작은 실행을 기록하고 다음 행동으로 연결하세요.":"Record small actions and turn them into your next step.","목표와 상황을 정리합니다.":"Clarify your goals and situation.","가능한 선택지를 탐색합니다.":"Explore possible options.","작은 행동으로 나눕니다.":"Break plans into small actions.","기록을 바탕으로 개선합니다.":"Improve using your activity logs.","목표를 실행으로 바꾸는":"TURN GOALS INTO ACTION","네 가지 단계":"FOUR CLEAR STEPS","God's plan은 결과를 약속하는 서비스가 아닙니다. 생각을 정리하고 현실적인 행동으로 전환한 뒤, 실제로 무엇을 했는지 확인하는 과정을 돕습니다.":"God's plan does not promise results. It helps you organize your thinking, turn it into realistic actions, and review what you actually did.","관심 분야, 보유 기술, 사용 가능한 시간과 제약을 정리합니다.":"Map your interests, skills, available time, and constraints.","콘텐츠, 디지털 제품, 지식·기술 기반 프로젝트를 비교합니다.":"Compare content, digital products, and skill-based projects.","큰 계획을 작고 구체적인 실행 과제로 바꿉니다.":"Turn big plans into small, specific tasks.","실행 기록을 보고 다음 주의 우선순위와 개선점을 찾습니다.":"Review your activity and identify next week’s priorities.","전략을 설계하고,":"DESIGN YOUR STRATEGY,","오늘의 행동을 시작하세요.":"START WITH TODAY’S ACTION.","현재 버전은 별도 가입이나 서버 저장 없이 브라우저에서 작동합니다. 작성한 내용은 새로고침하면 사라질 수 있으니, 중요한 기록은 JSON 파일로 내보내 보관하세요.":"This version runs in your browser without sign-up or server storage. Your entries may disappear when the page reloads, so export important records as a JSON file.","데이터는 이 브라우저 탭의 메모리에서만 처리됩니다. 저장하려면 직접 내보내세요.":"Data stays in this browser tab’s memory. Export it yourself to keep a copy.","나의 설계 조건":"MY DESIGN PARAMETERS","가장 이루고 싶은 목표":"PRIMARY GOAL","하루 사용 가능 시간":"AVAILABLE TIME / DAY","초기 비용 범위":"STARTUP BUDGET","현재 가진 기술·관심":"CURRENT SKILLS & INTERESTS","현재 경험 수준":"EXPERIENCE LEVEL","꼭 고려해야 할 제약 (선택)":"CONSTRAINTS (OPTIONAL)","현실적인 조건을 입력할수록 실행 계획이 구체적이 됩니다.":"More realistic inputs lead to a more practical plan.","전략 초안 만들기 ↗":"GENERATE STRATEGY ↗","작게 시작하고, 꾸준히 검증하세요.":"START SMALL. VALIDATE CONSISTENTLY.","먼저 관심 분야와 현재 가진 기술을 정리해 보세요. 첫 단계는 큰돈을 쓰거나 서비스를 시작하는 것이 아니라, 내가 누구에게 어떤 가치를 제공할 수 있는지 작게 확인하는 것입니다.":"Start by mapping your interests and current skills. The first step is not spending money or launching a service; it is testing what value you can offer and to whom.","오늘의 행동 제안 ↗":"SUGGEST TODAY’S ACTION ↗","실행 보드 보기":"VIEW EXECUTION BOARD","가능한 프로젝트 탐색":"EXPLORE PROJECT OPTIONS","학습 자료·템플릿 만들기":"Create learning resources & templates","내가 정리한 지식이나 작업 과정을 다른 사람이 활용할 수 있는 자료로 구성합니다.":"Package your knowledge or workflow into resources others can use.","초기 비용 낮음":"Low initial cost","제작 중심":"Creation-focused","검증 필요":"Needs validation","이 아이디어로 계획하기 ↗":"BUILD A PLAN FROM THIS ↗","주제형 콘텐츠 채널":"Topic-based content channel","관심 주제를 정하고 짧은 글·영상·뉴스레터 등으로 유용한 콘텐츠를 쌓습니다.":"Choose a topic and build useful content through short posts, videos, or newsletters.","시간 투자":"Time investment","꾸준함 필요":"Consistency required","수익 불확실":"Revenue uncertain","작은 문제 해결 프로젝트":"Small problem-solving project","디자인, 리서치, 편집 등 가진 기술로 해결할 수 있는 작은 문제를 찾습니다.":"Find a small problem you can solve with skills such as design, research, or editing.","기술 기반":"Skill-based","포트폴리오":"Portfolio","수요 확인":"Check demand","아이디어는 실험 후보입니다. 시장 수요, 비용, 관련 법규, 시간 부담을 확인하기 전에는 수익 가능성을 확정할 수 없습니다.":"Ideas are experiments, not income promises. Validate demand, costs, relevant rules, and time requirements before judging their potential.","실행 보드":"EXECUTION BOARD","아직 등록된 과제가 없습니다. 전략 초안을 만들거나 직접 추가해 보세요.":"No tasks yet. Generate a strategy draft or add a task manually.","추가 +":"ADD +","현재 실행 진행률":"CURRENT COMPLETION","오늘 할 수 있는 가장 작은 행동 하나부터 완료해 보세요.":"Start by completing one small action you can do today.","실천 기록과 성장 흐름":"PRACTICE LOG & MOMENTUM","오늘 무엇을 했나요?":"WHAT DID YOU DO TODAY?","기록 날짜":"DATE","실천 시간 (분)":"PRACTICE TIME (MIN)","오늘 실제로 한 일":"WHAT YOU ACTUALLY DID","배운 점 / 다음에 할 일":"LEARNING / NEXT ACTION","오늘의 실천 수준":"TODAY’S PRACTICE LEVEL","기록 저장":"SAVE LOG","입력 지우기":"CLEAR FIELDS","기록은 현재 브라우저 세션에만 보관됩니다.":"Records are kept only in the current browser session.","실천 성장 흐름":"PRACTICE MOMENTUM","기록이 쌓이면 그래프가 표시됩니다.":"Your chart will appear as you add records.","실천 기록 기준":"BASED ON PRACTICE LOGS","성과·수익 그래프가 아닙니다":"NOT A PERFORMANCE OR REVENUE CHART","평균 실천 수준":"AVERAGE PRACTICE LEVEL","누적 실천 시간":"TOTAL PRACTICE TIME","최근 기록":"RECENT LOGS","아직 저장된 기록이 없습니다.":"No saved records yet.","기록을 다른 기기에서도 이어가려면 JSON 파일을 내보낸 뒤 다시 가져오세요.":"To continue on another device, export your JSON file and import it there.","기록 내보내기 ↓":"EXPORT LOGS ↓","기록 가져오기 ↑":"IMPORT LOGS ↑","다각도로 계획 점검하기":"REVIEW YOUR PLAN FROM MULTIPLE ANGLES","아래 검토는 입력 내용을 바탕으로 브라우저에서 실행되는 규칙 기반 예시입니다. GPT·Claude·Gemini 모델이 실제 호출되거나 응답하는 기능은 아직 연결되어 있지 않습니다.":"This is a rule-based example that runs in your browser using your inputs. Live GPT, Claude, and Gemini calls are not connected yet.","논리와 구조":"LOGIC & STRUCTURE","목표와 제공할 가치가 구체적인지 확인합니다.":"Check whether the goal and value are specific.","현실성과 위험":"FEASIBILITY & RISK","시간·비용·학업 등 제약 조건을 점검합니다.":"Review constraints such as time, cost, and study.","개선과 확장":"IMPROVEMENT & GROWTH","작은 실험으로 수요를 검증하는 방법을 찾습니다.":"Find small experiments to validate demand.","실제 멀티-AI 분석은 서버에서 API 키를 안전하게 관리하는 구조를 추가한 뒤 활성화해야 합니다. 이 공개 웹사이트는 방문자에게 API 키를 요구하지 않습니다.":"Live multi-AI analysis requires a secure server that manages API keys. This public website never asks visitors for API keys.","계획 다각도 점검하기 ↗":"RUN STRATEGY REVIEW ↗","오늘의 진행 상황 공유하기":"SHARE TODAY’S PROGRESS","작은 실행이":"SMALL ACTIONS","방향을 만듭니다.":"CREATE DIRECTION.","오늘의 한 걸음이 내일의 선택지를 만듭니다.":"One step today creates more options tomorrow.","공유 카드 제목":"SHARE CARD TITLE","짧은 설명":"SHORT DESCRIPTION","오늘의 핵심 행동":"TODAY’S KEY ACTION","이미지 저장 ↓":"SAVE IMAGE ↓","문구 복사":"COPY TEXT","공유하기 ↗":"SHARE ↗","공유 카드에는 직접 입력한 내용만 포함됩니다. 민감한 개인정보는 넣지 마세요.":"The card includes only what you enter. Do not add sensitive personal information.","막연한 목표를 실행 가능한 행동으로. God's plan은 학습, 아이디어 탐색, 실행 기록을 돕는 개인 전략 워크스페이스입니다.":"Turn vague goals into actionable steps. God's plan is a personal strategy workspace for learning, exploring ideas, and tracking execution.","중요 안내: 이 서비스는 교육·기획·자기관리 목적의 도구이며 수익을 보장하지 않습니다. 패시브 인컴에도 초기 노동, 지속적인 관리, 비용, 실패 가능성이 존재합니다. 투자·금융 관련 내용은 일반적인 학습 정보이며 개인화된 투자 권유나 매수·매도 신호가 아닙니다. 실제 금융상품 거래, 계약, 결제, 서비스 가입 등 중요한 결정은 충분한 검토와 적절한 보호자·전문가의 조언 없이 진행하지 마세요. 이 웹 버전은 계정·서버 저장·실제 AI API 연결을 제공하지 않습니다.":"IMPORTANT: This tool is for education, planning, and personal organization; it does not guarantee income. Passive income still requires initial work, ongoing maintenance, and may involve costs or failure. Financial content is general education, not personalized investment advice or buy/sell signals. Do not enter financial contracts, make payments, trade products, or sign up for services without careful review and appropriate guidance from a trusted adult or qualified professional. This web version has no accounts, server storage, or live AI API connection.","나의 관심 분야로 작은 프로젝트 시작하기":"Start a small project in an area I care about","현재 관심 있는 분야":"An area I am interested in","먼저 작은 가설부터 검증하세요.":"Validate a small hypothesis first.","목표를 한 문장으로 정리하고 완료 기준 정하기":"Define the goal and its completion criteria","관련된 사람 3명 또는 사례 3개 조사하기":"Research three people or three examples","해결할 문제와 제공할 가치를 한 문장으로 쓰기":"Write the problem and value in one sentence","무료 도구로 아주 작은 시제품 또는 샘플 만들기":"Build a tiny prototype or sample with free tools","사용자 피드백을 받고 개선점 1개 기록하기":"Get feedback and record one improvement","현재 조건을 바탕으로 실행 초안을 만들었습니다.":"A draft action plan has been created from your conditions.","관심 분야에서 해결할 문제 3개 적기":"List three problems in your area of interest","관련 사례 2개를 찾아 공통점 기록하기":"Find two related examples and note their similarities","15분 동안 샘플이나 초안 하나 만들기":"Create one sample or draft in 15 minutes","오늘의 우선 행동":"TODAY’S PRIORITY ACTION","오늘의 행동을 제안했습니다.":"A suggested action for today is ready.","추가할 과제를 입력해 주세요.":"Enter a task to add.","등록된 과제를 모두 완료했습니다. 다음 실험을 설계해 보세요.":"All tasks are complete. Design your next experiment.","다음으로 완료할 수 있는 가장 작은 과제를 선택하세요.":"Choose the smallest task you can complete next.","실제로 한 일을 한 줄 이상 입력해 주세요.":"Enter at least one line about what you actually did.","실천 기록이 저장되었습니다.":"Practice log saved.","입력 칸을 비웠습니다.":"The fields have been cleared.","기록을 쌓으면 그래프가 표시됩니다.":"The chart will appear as records accumulate.","JSON 파일로 내보냈습니다.":"Exported as a JSON file.","형식이 맞지 않습니다.":"The file format is not valid.","기록을 가져왔습니다.":"Records imported.","파일을 읽지 못했습니다. 올바른 God’s plan JSON인지 확인해 주세요.":"Could not read the file. Check that it is a valid God’s plan JSON file.","브라우저 내 규칙 기반 점검을 완료했습니다.":"Browser-based rule review completed.","공유 문구를 복사했습니다.":"Share text copied.","복사할 수 없습니다. 내용을 직접 선택해 주세요.":"Could not copy. Please select the text manually.","공유 기능을 사용할 수 없습니다.":"Sharing is not available.","공유 카드를 이미지로 저장했습니다.":"Share card saved as an image.","완료한 행동을 구체적으로 적어보세요.":"Describe what you completed.","다음 행동을 더 쉽게 만들 개선점을 적어보세요.":"Note an improvement that could make your next action easier.","예: 내가 가진 지식으로 작은 온라인 프로젝트 시작하기":"e.g. Start a small online project using what I know","예: 글쓰기, 디자인, 금융 지식":"e.g. Writing, design, financial knowledge","예: 학업 우선, 평일에는 20분만 가능":"e.g. Studies come first; 20 minutes on weekdays","새 실행 과제를 입력하세요":"Enter a new action item","예: 콘텐츠 주제 3개 조사하기":"e.g. Research three content topics","오늘의 행동:":"Today’s action:","작은 실행 하나":"One small action","실행을 기록하고 다음 단계로 이어갑니다.":"Record the action and move to the next step.","오늘의 핵심 행동 · ":"Today’s key action · ","목표는 “":"Your goal is “","”입니다. 현재 조건은 하루 ":"”. Current conditions: ",", 비용 범위는 ":", budget: ",", 강점은 ":", strengths: ","입니다. 첫 단계에서는 결과를 크게 만들기보다, 누구의 어떤 문제를 해결할 수 있는지 확인하는 것이 좋습니다.":". The first step is to identify whose problem you can solve and how, rather than aiming for a large result.","제약 조건도 반영하세요: ":"Also account for this constraint: ","유료 도구나 결제 없이 시작할 수 있는 조사·시제품·피드백부터 진행하세요.":"Start with research, prototypes, and feedback that do not require paid tools or payments.","오늘은 ":"Today, ","를 해보세요. ":"。Try doing this. "," 안에 끝낼 수 있도록 범위를 줄이고, 완료 여부와 배운 점을 기록하세요.":"Keep the scope small enough to finish within the available time, then record completion and what you learned.","0 ENTRIES":"0 ENTRIES","실천 수준 ":"PRACTICE LEVEL ","분":" min","언어 선택":"Select language","PRIVATE SESSION":"PRIVATE SESSION","AI: LOCAL RULESET":"AI: LOCAL RULESET","DATA: USER INPUT":"DATA: USER INPUT","PUBLIC PREVIEW":"PUBLIC PREVIEW","서비스 상태":"SERVICE STATUS","워크스페이스 메뉴":"WORKSPACE MENU","God's plan 홈":"God's plan home","God's plan 대시보드 미리보기":"God's plan dashboard preview","처음 시작":"Just starting","기초 지식 있음":"Basic knowledge","작은 프로젝트 경험 있음":"Some project experience","꾸준히 실행 중":"Practicing consistently","15분":"15 min","30분":"30 min","1시간":"1 hour","2시간":"2 hours","0원 / 무료 도구 중심":"₩0 / free tools","소액":"Small amount","아직 미정":"Not decided yet","소액 (필요성 검토 후)":"Small amount (after review)","실제 한 일":"ACTIVITY","오늘의 행동":"TODAY’S ACTION","과제 완료":"Task complete","과제 삭제":"Delete task","TASKS COMPLETED":"TASKS COMPLETED","DAYS RECORDED":"DAYS RECORDED","PRACTICE TIME":"PRACTICE TIME","DAY STREAK":"DAY STREAK","오늘의 행동 제안":"SUGGEST ACTION","전략 초안":"STRATEGY DRAFT","목표":"Goal","관심 분야":"area of interest","시간":"time","비용":"cost","지식":"Knowledge","학습":"Learning","다음":"Next","실천 수준":"Practice level"},"zh":{"워크스페이스 열기":"打开工作区","메뉴 열기":"打开菜单","생각을 분석하고":"分析想法","실행을":"执行","통제":"掌控","하다.":"并清晰执行。","목표·시간·역량을 구조화하고, 가능한 선택지를 비교한 뒤 실행 과정을 추적하는 개인 전략 터미널. 막연한 아이디어를 검증 가능한 행동 단위로 전환하세요.":"这是一款个人策略终端，可梳理目标、时间与能力，比较可行方案并追踪执行。将模糊想法转化为可验证的行动。","나의 전략 설계하기":"设计我的策略","작동 방식 살펴보기":"查看使用方式","가입 없이 바로 시작":"无需注册即可开始","기록은 직접 내보내고 관리":"自行导出并管理记录","목표·조건 정리":"整理目标与条件","기회 후보 탐색":"探索机会","오늘의 행동 관리":"管理今日行动","실천 기록·검토":"记录与复盘","작은 실행을 기록하고 다음 행동으로 연결하세요.":"记录每一个小行动，并将其转化为下一步。","목표와 상황을 정리합니다.":"梳理目标与现状。","가능한 선택지를 탐색합니다.":"探索可行的选择。","작은 행동으로 나눕니다.":"将计划拆分为小行动。","기록을 바탕으로 개선합니다.":"根据记录持续改进。","목표를 실행으로 바꾸는":"将目标转化为行动","네 가지 단계":"四个步骤","God's plan은 결과를 약속하는 서비스가 아닙니다. 생각을 정리하고 현실적인 행동으로 전환한 뒤, 실제로 무엇을 했는지 확인하는 과정을 돕습니다.":"God's plan 不承诺结果，而是帮助你梳理思路、转化为切实可行的行动，并回顾实际完成的事情。","관심 분야, 보유 기술, 사용 가능한 시간과 제약을 정리합니다.":"整理兴趣、技能、可用时间和限制条件。","콘텐츠, 디지털 제품, 지식·기술 기반 프로젝트를 비교합니다.":"比较内容创作、数字产品和技能型项目。","큰 계획을 작고 구체적인 실행 과제로 바꿉니다.":"将大计划拆解为具体的小任务。","실행 기록을 보고 다음 주의 우선순위와 개선점을 찾습니다.":"回顾执行记录，找出下周的优先事项与改进点。","전략을 설계하고,":"设计你的策略，","오늘의 행동을 시작하세요.":"从今天的行动开始。","현재 버전은 별도 가입이나 서버 저장 없이 브라우저에서 작동합니다. 작성한 내용은 새로고침하면 사라질 수 있으니, 중요한 기록은 JSON 파일로 내보내 보관하세요.":"此版本无需注册或服务器存储，可直接在浏览器中使用。刷新页面后输入内容可能会消失，请将重要记录导出为 JSON 文件。","데이터는 이 브라우저 탭의 메모리에서만 처리됩니다. 저장하려면 직접 내보내세요.":"数据仅在此浏览器标签页的内存中处理。请自行导出以保存副本。","나의 설계 조건":"我的规划条件","가장 이루고 싶은 목표":"最想实现的目标","하루 사용 가능 시간":"每天可用时间","초기 비용 범위":"初始预算范围","현재 가진 기술·관심":"现有技能与兴趣","현재 경험 수준":"当前经验水平","꼭 고려해야 할 제약 (선택)":"需要考虑的限制（选填）","현실적인 조건을 입력할수록 실행 계획이 구체적이 됩니다.":"输入越贴近现实，执行计划就越具体。","전략 초안 만들기 ↗":"生成策略草案 ↗","작게 시작하고, 꾸준히 검증하세요.":"从小处开始，持续验证。","먼저 관심 분야와 현재 가진 기술을 정리해 보세요. 첫 단계는 큰돈을 쓰거나 서비스를 시작하는 것이 아니라, 내가 누구에게 어떤 가치를 제공할 수 있는지 작게 확인하는 것입니다.":"先梳理你的兴趣和现有技能。第一步不是花大钱或启动服务，而是小范围验证你能为谁提供什么价值。","오늘의 행동 제안 ↗":"推荐今日行动 ↗","실행 보드 보기":"查看执行面板","가능한 프로젝트 탐색":"探索可行项目","학습 자료·템플릿 만들기":"制作学习资料和模板","내가 정리한 지식이나 작업 과정을 다른 사람이 활용할 수 있는 자료로 구성합니다.":"将整理好的知识或工作流程制作成他人可使用的资料。","초기 비용 낮음":"初始成本较低","제작 중심":"以制作内容为主","검증 필요":"需要验证","이 아이디어로 계획하기 ↗":"用此想法制定计划 ↗","주제형 콘텐츠 채널":"主题型内容频道","관심 주제를 정하고 짧은 글·영상·뉴스레터 등으로 유용한 콘텐츠를 쌓습니다.":"确定主题，通过短文、视频或通讯持续积累有用内容。","시간 투자":"时间投入","꾸준함 필요":"需要持续投入","수익 불확실":"收益不确定","작은 문제 해결 프로젝트":"小型问题解决项目","디자인, 리서치, 편집 등 가진 기술로 해결할 수 있는 작은 문제를 찾습니다.":"寻找一个可以用设计、研究或编辑等技能解决的小问题。","기술 기반":"技能驱动","포트폴리오":"作品集","수요 확인":"确认需求","아이디어는 실험 후보입니다. 시장 수요, 비용, 관련 법규, 시간 부담을 확인하기 전에는 수익 가능성을 확정할 수 없습니다.":"这些想法只是实验候选，并非收益承诺。在确认市场需求、成本、相关法规和时间投入前，无法确定其盈利潜力。","실행 보드":"执行面板","아직 등록된 과제가 없습니다. 전략 초안을 만들거나 직접 추가해 보세요.":"尚未添加任务。请生成策略草案或手动添加任务。","추가 +":"添加 +","현재 실행 진행률":"当前执行进度","오늘 할 수 있는 가장 작은 행동 하나부터 완료해 보세요.":"先完成一项今天就能做到的小行动。","실천 기록과 성장 흐름":"实践记录与进展","오늘 무엇을 했나요?":"今天做了什么？","기록 날짜":"日期","실천 시간 (분)":"实践时间（分钟）","오늘 실제로 한 일":"今天实际完成的事","배운 점 / 다음에 할 일":"收获 / 下一步","오늘의 실천 수준":"今日实践程度","기록 저장":"保存记录","입력 지우기":"清空输入","기록은 현재 브라우저 세션에만 보관됩니다.":"记录仅保存在当前浏览器会话中。","실천 성장 흐름":"实践进展","기록이 쌓이면 그래프가 표시됩니다.":"添加记录后，图表将在此显示。","실천 기록 기준":"基于实践记录","성과·수익 그래프가 아닙니다":"并非业绩或收益图表","평균 실천 수준":"平均实践程度","누적 실천 시간":"累计实践时间","최근 기록":"最近记录","아직 저장된 기록이 없습니다.":"还没有保存的记录。","기록을 다른 기기에서도 이어가려면 JSON 파일을 내보낸 뒤 다시 가져오세요.":"若要在其他设备继续使用，请先导出 JSON 文件，再在另一设备导入。","기록 내보내기 ↓":"导出记录 ↓","기록 가져오기 ↑":"导入记录 ↑","다각도로 계획 점검하기":"多角度检查计划","아래 검토는 입력 내용을 바탕으로 브라우저에서 실행되는 규칙 기반 예시입니다. GPT·Claude·Gemini 모델이 실제 호출되거나 응답하는 기능은 아직 연결되어 있지 않습니다.":"以下是根据输入内容在浏览器中运行的规则示例。目前尚未连接 GPT、Claude 或 Gemini 的实时调用。","논리와 구조":"逻辑与结构","목표와 제공할 가치가 구체적인지 확인합니다.":"检查目标和提供的价值是否具体。","현실성과 위험":"可行性与风险","시간·비용·학업 등 제약 조건을 점검합니다.":"检查时间、成本和学业等限制。","개선과 확장":"改进与扩展","작은 실험으로 수요를 검증하는 방법을 찾습니다.":"寻找通过小实验验证需求的方法。","실제 멀티-AI 분석은 서버에서 API 키를 안전하게 관리하는 구조를 추가한 뒤 활성화해야 합니다. 이 공개 웹사이트는 방문자에게 API 키를 요구하지 않습니다.":"实时多 AI 分析需要增加安全管理 API 密钥的服务器。本公开网站不会要求访客提供 API 密钥。","계획 다각도 점검하기 ↗":"多角度检查计划 ↗","오늘의 진행 상황 공유하기":"分享今日进展","작은 실행이":"微小行动","방향을 만듭니다.":"创造方向。","오늘의 한 걸음이 내일의 선택지를 만듭니다.":"今天的一小步，会创造明天更多的选择。","공유 카드 제목":"分享卡片标题","짧은 설명":"简短说明","오늘의 핵심 행동":"今日关键行动","이미지 저장 ↓":"保存图片 ↓","문구 복사":"复制文案","공유하기 ↗":"分享 ↗","공유 카드에는 직접 입력한 내용만 포함됩니다. 민감한 개인정보는 넣지 마세요.":"卡片只包含你输入的内容。请勿添加敏感个人信息。","막연한 목표를 실행 가능한 행동으로. God's plan은 학습, 아이디어 탐색, 실행 기록을 돕는 개인 전략 워크스페이스입니다.":"将模糊目标转化为可执行的行动。God's plan 是帮助学习、探索想法和记录执行情况的个人策略工作区。","중요 안내: 이 서비스는 교육·기획·자기관리 목적의 도구이며 수익을 보장하지 않습니다. 패시브 인컴에도 초기 노동, 지속적인 관리, 비용, 실패 가능성이 존재합니다. 투자·금융 관련 내용은 일반적인 학습 정보이며 개인화된 투자 권유나 매수·매도 신호가 아닙니다. 실제 금융상품 거래, 계약, 결제, 서비스 가입 등 중요한 결정은 충분한 검토와 적절한 보호자·전문가의 조언 없이 진행하지 마세요. 이 웹 버전은 계정·서버 저장·실제 AI API 연결을 제공하지 않습니다.":"重要提示：本服务用于教育、规划和自我管理，不保证收入。被动收入仍需要前期劳动和持续维护，也可能产生费用或失败。金融内容仅供一般学习，不构成个性化投资建议或买卖信号。进行金融交易、签订合同、付款或注册服务等重要决定前，请充分审查，并寻求可信赖的成年人或专业人士的适当建议。本网页版本不提供账户、服务器存储或实时 AI API 连接。","나의 관심 분야로 작은 프로젝트 시작하기":"从感兴趣的领域开始一个小项目","현재 관심 있는 분야":"目前感兴趣的领域","먼저 작은 가설부터 검증하세요.":"先验证一个小假设。","목표를 한 문장으로 정리하고 완료 기준 정하기":"用一句话明确目标和完成标准","관련된 사람 3명 또는 사례 3개 조사하기":"调查三位相关人士或三个案例","해결할 문제와 제공할 가치를 한 문장으로 쓰기":"用一句话写下要解决的问题和提供的价值","무료 도구로 아주 작은 시제품 또는 샘플 만들기":"使用免费工具制作一个小型原型或样品","사용자 피드백을 받고 개선점 1개 기록하기":"收集反馈并记录一项改进","현재 조건을 바탕으로 실행 초안을 만들었습니다.":"已根据当前条件生成执行草案。","관심 분야에서 해결할 문제 3개 적기":"列出感兴趣领域中的三个问题","관련 사례 2개를 찾아 공통점 기록하기":"查找两个相关案例并记录共同点","15분 동안 샘플이나 초안 하나 만들기":"用 15 分钟制作一个样品或草案","오늘의 우선 행동":"今日优先行动","오늘의 행동을 제안했습니다.":"已为今天推荐一项行动。","추가할 과제를 입력해 주세요.":"请输入要添加的任务。","등록된 과제를 모두 완료했습니다. 다음 실험을 설계해 보세요.":"所有任务均已完成。请设计下一次实验。","다음으로 완료할 수 있는 가장 작은 과제를 선택하세요.":"选择下一项最容易完成的小任务。","실제로 한 일을 한 줄 이상 입력해 주세요.":"请至少输入一行实际完成的事情。","실천 기록이 저장되었습니다.":"实践记录已保存。","입력 칸을 비웠습니다.":"已清空输入栏。","기록을 쌓으면 그래프가 표시됩니다.":"记录累积后将显示图表。","JSON 파일로 내보냈습니다.":"已导出为 JSON 文件。","형식이 맞지 않습니다.":"文件格式无效。","기록을 가져왔습니다.":"已导入记录。","파일을 읽지 못했습니다. 올바른 God’s plan JSON인지 확인해 주세요.":"无法读取文件。请确认它是有效的 God’s plan JSON 文件。","브라우저 내 규칙 기반 점검을 완료했습니다.":"已完成浏览器内的规则检查。","공유 문구를 복사했습니다.":"分享文案已复制。","복사할 수 없습니다. 내용을 직접 선택해 주세요.":"无法复制，请手动选择文本。","공유 기능을 사용할 수 없습니다.":"当前无法使用分享功能。","공유 카드를 이미지로 저장했습니다.":"分享卡片已保存为图片。","완료한 행동을 구체적으로 적어보세요.":"具体写下已完成的行动。","다음 행동을 더 쉽게 만들 개선점을 적어보세요.":"写下能让下一步更容易完成的改进点。","예: 내가 가진 지식으로 작은 온라인 프로젝트 시작하기":"例如：利用已有知识开展一个小型线上项目","예: 글쓰기, 디자인, 금융 지식":"例如：写作、设计、金融知识","예: 학업 우선, 평일에는 20분만 가능":"例如：学业优先，工作日只有 20 分钟","새 실행 과제를 입력하세요":"输入新的行动任务","예: 콘텐츠 주제 3개 조사하기":"例如：研究三个内容主题","오늘의 행동:":"今日行动：","작은 실행 하나":"一个小行动","실행을 기록하고 다음 단계로 이어갑니다.":"记录行动并迈向下一步。","오늘의 핵심 행동 · ":"今日关键行动 · ","목표는 “":"你的目标是“","”입니다. 현재 조건은 하루 ":"”。当前条件：每天",", 비용 범위는 ":"，预算范围：",", 강점은 ":"，优势：","입니다. 첫 단계에서는 결과를 크게 만들기보다, 누구의 어떤 문제를 해결할 수 있는지 확인하는 것이 좋습니다.":"。第一步应先确认你能为谁解决什么问题，而不是急于追求大成果。","제약 조건도 반영하세요: ":"也请考虑此限制：","유료 도구나 결제 없이 시작할 수 있는 조사·시제품·피드백부터 진행하세요.":"先从无需付费工具或付款的调研、原型和反馈开始。","오늘은 ":"今天，","를 해보세요. ":"。请尝试完成。"," 안에 끝낼 수 있도록 범위를 줄이고, 완료 여부와 배운 점을 기록하세요.":"缩小任务范围，确保能在可用时间内完成，并记录完成情况和收获。","0 ENTRIES":"0 条记录","실천 수준 ":"实践程度 ","분":"分钟","언어 선택":"选择语言","PRIVATE SESSION":"私密会话","AI: LOCAL RULESET":"AI：本地规则","DATA: USER INPUT":"数据：用户输入","PUBLIC PREVIEW":"公开预览","서비스 상태":"服务状态","워크스페이스 메뉴":"工作区菜单","God's plan 홈":"God's plan 首页","God's plan 대시보드 미리보기":"God's plan 仪表盘预览","처음 시작":"刚开始","기초 지식 있음":"具备基础知识","작은 프로젝트 경험 있음":"有小项目经验","꾸준히 실행 중":"持续实践中","15분":"15 分钟","30분":"30 分钟","1시간":"1 小时","2시간":"2 小时","0원 / 무료 도구 중심":"0 元 / 以免费工具为主","소액":"少量","아직 미정":"尚未确定","소액 (필요성 검토 후)":"少量（评估必要性后）","실제 한 일":"实际活动","오늘의 행동":"今日行动","과제 완료":"完成任务","과제 삭제":"删除任务","TASKS COMPLETED":"已完成任务","DAYS RECORDED":"记录天数","PRACTICE TIME":"实践时间","DAY STREAK":"连续记录天数","오늘의 행동 제안":"推荐行动","전략 초안":"策略草案","목표":"目标","관심 분야":"感兴趣领域","시간":"时间","비용":"成本","지식":"知识","학습":"学习","다음":"下一步","실천 수준":"实践程度","PERSONAL STRATEGY TERMINAL":"个人策略终端","SESSION ACTIVE":"会话已启动","HOW IT WORKS":"使用方式","WORKSPACE":"工作区","PROGRESS":"进度","SHARE STUDIO":"分享工作室","STRATEGY":"策略","CONTROL DESK":"控制台","LAYOUT SAMPLE":"界面示意","WORKSPACE / 001":"工作区 / 001","NO LIVE MARKET DATA":"无实时市场数据","MODULE":"模块","FUNCTION":"功能","STATE":"状态","01 / THINK":"01 / 思考","02 / SCAN":"02 / 探索","03 / EXEC":"03 / 执行","04 / LOG":"04 / 记录","READY":"就绪","REVIEW":"待检查","ACTIVE":"进行中","SESSION":"会话","ENVIRONMENT: BROWSER SESSION":"环境：浏览器会话","BUILD 01.01":"版本 01.01","Daily momentum":"每日行动力","01 / DISCOVER":"01 / 探索","03 / EXECUTE":"03 / 执行","04 / IMPROVE":"04 / 改进","A SIMPLE SYSTEM, BUILT FOR REAL LIFE":"为真实生活打造的简明系统","Define your direction":"明确你的方向","Explore opportunities":"探索机会","Make it actionable":"转化为行动","Review & improve":"复盘与改进","YOUR PERSONAL COMMAND CENTER":"个人指挥中心","Overview":"总览","Strategy Design":"策略设计","Opportunity Radar":"机会雷达","Execution":"执行","Strategy Review":"策略复盘","LOCAL SESSION MODE":"本地会话模式","MONDAY / YOUR PRIVATE WORKSPACE":"星期一 / 你的专属工作区","Good to see you.":"欢迎回来。","TODAY":"今天","01 / STRATEGY DESIGN":"01 / 策略设计","START WITH YOUR REALITY":"从实际情况出发","TODAY'S BRIEFING":"今日简报","01 / FOCUS":"01 / 重点","02 / OPPORTUNITY RADAR":"02 / 机会雷达","IDEAS TO TEST · NOT INCOME PROMISES":"待验证想法 · 非收益承诺","KNOWLEDGE / DIGITAL":"知识 / 数字产品","CONTENT / MEDIA":"内容 / 媒体","SKILL / SERVICE":"技能 / 服务","03 / EXECUTION BOARD":"03 / 执行面板","MAKE PROGRESS VISIBLE":"让进展清晰可见","04 / PROGRESS TRACKER":"04 / 进度追踪","CONSISTENCY OVER HYPE":"重视持续行动，而非噱头","DAILY PRACTICE LOG":"每日实践记录","SESSION ONLY":"仅限本次会话","MOMENTUM OVER TIME":"长期行动趋势","05 / STRATEGY REVIEW":"05 / 策略复盘","LOCAL PREVIEW · NO API CALL":"本地预览 · 未调用 API","LOGIC CHECK":"逻辑检查","REALITY CHECK":"现实性检查","GROWTH CHECK":"改进与发展","06 / SHARE STUDIO":"06 / 分享工作室","MAKE YOUR MOMENTUM VISIBLE":"让你的行动成果可见","GOD'S PLAN · DAILY MOMENTUM":"GOD'S PLAN · 每日行动力","TODAY'S PRACTICE":"今日实践","YOUR PROGRESS · 01":"你的进度 · 01","How it works":"使用方式","Workspace":"工作区","Share":"分享","Execute":"执行","Select language":"选择语言"},"ja":{"워크스페이스 열기":"ワークスペースを開く","메뉴 열기":"メニューを開く","생각을 분석하고":"アイデアを分析し","실행을":"実行を","통제":"管理","하다.":"実行する。","목표·시간·역량을 구조화하고, 가능한 선택지를 비교한 뒤 실행 과정을 추적하는 개인 전략 터미널. 막연한 아이디어를 검증 가능한 행동 단위로 전환하세요.":"目標・時間・能力を整理し、選択肢を比較して実行を追跡する個人戦略ターミナルです。曖昧なアイデアを検証可能な行動に変えましょう。","나의 전략 설계하기":"戦略を設計する","작동 방식 살펴보기":"仕組みを見る","가입 없이 바로 시작":"登録なしですぐ開始","기록은 직접 내보내고 관리":"記録は自分で書き出して管理","목표·조건 정리":"目標と条件を整理","기회 후보 탐색":"機会を探す","오늘의 행동 관리":"今日の行動を管理","실천 기록·검토":"実践を記録・振り返る","작은 실행을 기록하고 다음 행동으로 연결하세요.":"小さな実行を記録し、次の行動につなげましょう。","목표와 상황을 정리합니다.":"目標と状況を整理します。","가능한 선택지를 탐색합니다.":"可能な選択肢を探ります。","작은 행동으로 나눕니다.":"計画を小さな行動に分けます。","기록을 바탕으로 개선합니다.":"記録をもとに改善します。","목표를 실행으로 바꾸는":"目標を実行に変える","네 가지 단계":"4つのステップ","God's plan은 결과를 약속하는 서비스가 아닙니다. 생각을 정리하고 현실적인 행동으로 전환한 뒤, 실제로 무엇을 했는지 확인하는 과정을 돕습니다.":"God’s plan は成果を保証するサービスではありません。考えを整理して現実的な行動に変え、実際に何をしたか振り返るプロセスを支援します。","관심 분야, 보유 기술, 사용 가능한 시간과 제약을 정리합니다.":"興味分野、スキル、使える時間、制約を整理します。","콘텐츠, 디지털 제품, 지식·기술 기반 프로젝트를 비교합니다.":"コンテンツ、デジタル商品、知識やスキルを活かす企画を比較します。","큰 계획을 작고 구체적인 실행 과제로 바꿉니다.":"大きな計画を小さく具体的なタスクに変えます。","실행 기록을 보고 다음 주의 우선순위와 개선점을 찾습니다.":"実行記録を確認し、来週の優先事項と改善点を見つけます。","전략을 설계하고,":"戦略を設計し、","오늘의 행동을 시작하세요.":"今日の行動を始めましょう。","현재 버전은 별도 가입이나 서버 저장 없이 브라우저에서 작동합니다. 작성한 내용은 새로고침하면 사라질 수 있으니, 중요한 기록은 JSON 파일로 내보내 보관하세요.":"このバージョンは登録やサーバー保存なしでブラウザー上で動作します。更新すると入力内容が消える場合があるため、大切な記録は JSON ファイルとして書き出してください。","데이터는 이 브라우저 탭의 메모리에서만 처리됩니다. 저장하려면 직접 내보내세요.":"データはこのブラウザータブのメモリ内だけで処理されます。保存するには自分で書き出してください。","나의 설계 조건":"設計条件","가장 이루고 싶은 목표":"最も実現したい目標","하루 사용 가능 시간":"1日に使える時間","초기 비용 범위":"初期費用の範囲","현재 가진 기술·관심":"現在のスキル・関心","현재 경험 수준":"現在の経験レベル","꼭 고려해야 할 제약 (선택)":"考慮すべき制約（任意）","현실적인 조건을 입력할수록 실행 계획이 구체적이 됩니다.":"現実的な条件を入力するほど、実行計画が具体的になります。","전략 초안 만들기 ↗":"戦略案を作成 ↗","작게 시작하고, 꾸준히 검증하세요.":"小さく始め、継続的に検証しましょう。","먼저 관심 분야와 현재 가진 기술을 정리해 보세요. 첫 단계는 큰돈을 쓰거나 서비스를 시작하는 것이 아니라, 내가 누구에게 어떤 가치를 제공할 수 있는지 작게 확인하는 것입니다.":"まず興味分野と現在のスキルを整理しましょう。最初の一歩は大きな出費やサービス開始ではなく、誰にどんな価値を提供できるか小さく確かめることです。","오늘의 행동 제안 ↗":"今日の行動を提案 ↗","실행 보드 보기":"実行ボードを見る","가능한 프로젝트 탐색":"プロジェクト候補を探す","학습 자료·템플릿 만들기":"学習資料・テンプレートを作る","내가 정리한 지식이나 작업 과정을 다른 사람이 활용할 수 있는 자료로 구성합니다.":"自分の知識や作業手順を、他の人が活用できる資料にまとめます。","초기 비용 낮음":"初期費用が低い","제작 중심":"制作中心","검증 필요":"検証が必要","이 아이디어로 계획하기 ↗":"この案で計画する ↗","주제형 콘텐츠 채널":"テーマ型コンテンツチャンネル","관심 주제를 정하고 짧은 글·영상·뉴스레터 등으로 유용한 콘텐츠를 쌓습니다.":"テーマを決め、短い記事・動画・ニュースレターなどで役立つコンテンツを積み上げます。","시간 투자":"時間の投資","꾸준함 필요":"継続が必要","수익 불확실":"収益は不確実","작은 문제 해결 프로젝트":"小さな課題解決プロジェクト","디자인, 리서치, 편집 등 가진 기술로 해결할 수 있는 작은 문제를 찾습니다.":"デザイン、リサーチ、編集などのスキルで解決できる小さな課題を探します。","기술 기반":"スキルベース","포트폴리오":"ポートフォリオ","수요 확인":"需要を確認","아이디어는 실험 후보입니다. 시장 수요, 비용, 관련 법규, 시간 부담을 확인하기 전에는 수익 가능성을 확정할 수 없습니다.":"アイデアは実験候補です。市場需要、費用、関連法規、時間的負担を確認するまでは、収益性を断定できません。","실행 보드":"実行ボード","아직 등록된 과제가 없습니다. 전략 초안을 만들거나 직접 추가해 보세요.":"まだタスクがありません。戦略案を作成するか、手動で追加してください。","추가 +":"追加 +","현재 실행 진행률":"現在の実行率","오늘 할 수 있는 가장 작은 행동 하나부터 완료해 보세요.":"今日できる最小の行動を一つ完了することから始めましょう。","실천 기록과 성장 흐름":"実践記録と推移","오늘 무엇을 했나요?":"今日は何をしましたか？","기록 날짜":"日付","실천 시간 (분)":"実践時間（分）","오늘 실제로 한 일":"今日実際に行ったこと","배운 점 / 다음에 할 일":"学んだこと / 次にすること","오늘의 실천 수준":"今日の実践レベル","기록 저장":"記録を保存","입력 지우기":"入力をクリア","기록은 현재 브라우저 세션에만 보관됩니다.":"記録は現在のブラウザーセッションにのみ保存されます。","실천 성장 흐름":"実践の推移","기록이 쌓이면 그래프가 표시됩니다.":"記録が増えるとグラフが表示されます。","실천 기록 기준":"実践記録に基づく","성과·수익 그래프가 아닙니다":"成果・収益のグラフではありません","평균 실천 수준":"平均実践レベル","누적 실천 시간":"累計実践時間","최근 기록":"最近の記録","아직 저장된 기록이 없습니다.":"保存された記録はまだありません。","기록을 다른 기기에서도 이어가려면 JSON 파일을 내보낸 뒤 다시 가져오세요.":"別の端末でも続けるには、JSON ファイルを書き出してから読み込んでください。","기록 내보내기 ↓":"記録を書き出す ↓","기록 가져오기 ↑":"記録を読み込む ↑","다각도로 계획 점검하기":"多角的に計画を点検","아래 검토는 입력 내용을 바탕으로 브라우저에서 실행되는 규칙 기반 예시입니다. GPT·Claude·Gemini 모델이 실제 호출되거나 응답하는 기능은 아직 연결되어 있지 않습니다.":"以下は入力内容をもとにブラウザー上で動作するルールベースの例です。GPT・Claude・Gemini の実際の呼び出し機能はまだ接続されていません。","논리와 구조":"論理と構造","목표와 제공할 가치가 구체적인지 확인합니다.":"目標と提供価値が具体的か確認します。","현실성과 위험":"現実性とリスク","시간·비용·학업 등 제약 조건을 점검합니다.":"時間・費用・学業などの制約を確認します。","개선과 확장":"改善と拡張","작은 실험으로 수요를 검증하는 방법을 찾습니다.":"小さな実験で需要を検証する方法を探します。","실제 멀티-AI 분석은 서버에서 API 키를 안전하게 관리하는 구조를 추가한 뒤 활성화해야 합니다. 이 공개 웹사이트는 방문자에게 API 키를 요구하지 않습니다.":"実際のマルチAI分析には、APIキーを安全に管理するサーバー構成が必要です。この公開サイトは訪問者にAPIキーを求めません。","계획 다각도 점검하기 ↗":"計画を多角的に点検 ↗","오늘의 진행 상황 공유하기":"今日の進捗を共有","작은 실행이":"小さな実行が","방향을 만듭니다.":"方向をつくります。","오늘의 한 걸음이 내일의 선택지를 만듭니다.":"今日の一歩が、明日の選択肢を広げます。","공유 카드 제목":"共有カードのタイトル","짧은 설명":"短い説明","오늘의 핵심 행동":"今日の重要な行動","이미지 저장 ↓":"画像を保存 ↓","문구 복사":"テキストをコピー","공유하기 ↗":"共有 ↗","공유 카드에는 직접 입력한 내용만 포함됩니다. 민감한 개인정보는 넣지 마세요.":"共有カードには入力した内容のみ含まれます。機密性の高い個人情報は入力しないでください。","막연한 목표를 실행 가능한 행동으로. God's plan은 학습, 아이디어 탐색, 실행 기록을 돕는 개인 전략 워크스페이스입니다.":"曖昧な目標を実行可能な行動に。God’s plan は学習、アイデア探索、実行記録を支援する個人戦略ワークスペースです。","중요 안내: 이 서비스는 교육·기획·자기관리 목적의 도구이며 수익을 보장하지 않습니다. 패시브 인컴에도 초기 노동, 지속적인 관리, 비용, 실패 가능성이 존재합니다. 투자·금융 관련 내용은 일반적인 학습 정보이며 개인화된 투자 권유나 매수·매도 신호가 아닙니다. 실제 금융상품 거래, 계약, 결제, 서비스 가입 등 중요한 결정은 충분한 검토와 적절한 보호자·전문가의 조언 없이 진행하지 마세요. 이 웹 버전은 계정·서버 저장·실제 AI API 연결을 제공하지 않습니다.":"重要：このサービスは学習・計画・自己管理を目的としたツールであり、収益を保証しません。パッシブインカムにも初期の作業、継続的な管理、費用、失敗の可能性があります。金融情報は一般的な学習用であり、個別の投資助言や売買シグナルではありません。金融商品の取引、契約、支払い、サービス登録などの重要な決定は、十分に確認し、信頼できる大人や専門家の適切な助言を得ずに進めないでください。このウェブ版はアカウント、サーバー保存、実際のAI API接続を提供しません。","나의 관심 분야로 작은 프로젝트 시작하기":"興味のある分野で小さなプロジェクトを始める","현재 관심 있는 분야":"現在関心のある分野","먼저 작은 가설부터 검증하세요.":"まず小さな仮説から検証しましょう。","목표를 한 문장으로 정리하고 완료 기준 정하기":"目標を一文で整理し、完了基準を決める","관련된 사람 3명 또는 사례 3개 조사하기":"関連する人を3人、または事例を3つ調べる","해결할 문제와 제공할 가치를 한 문장으로 쓰기":"解決する課題と提供価値を一文で書く","무료 도구로 아주 작은 시제품 또는 샘플 만들기":"無料ツールで小さな試作品やサンプルを作る","사용자 피드백을 받고 개선점 1개 기록하기":"フィードバックを受け、改善点を1つ記録する","현재 조건을 바탕으로 실행 초안을 만들었습니다.":"現在の条件に基づいて実行案を作成しました。","관심 분야에서 해결할 문제 3개 적기":"関心分野で解決できそうな課題を3つ書く","관련 사례 2개를 찾아 공통점 기록하기":"関連事例を2つ探し、共通点を記録する","15분 동안 샘플이나 초안 하나 만들기":"15分でサンプルや草案を1つ作る","오늘의 우선 행동":"今日の優先行動","오늘의 행동을 제안했습니다.":"今日の行動を提案しました。","추가할 과제를 입력해 주세요.":"追加するタスクを入力してください。","등록된 과제를 모두 완료했습니다. 다음 실험을 설계해 보세요.":"登録したタスクはすべて完了しました。次の実験を設計しましょう。","다음으로 완료할 수 있는 가장 작은 과제를 선택하세요.":"次に完了できる最小のタスクを選びましょう。","실제로 한 일을 한 줄 이상 입력해 주세요.":"実際に行ったことを1行以上入力してください。","실천 기록이 저장되었습니다.":"実践記録を保存しました。","입력 칸을 비웠습니다.":"入力欄をクリアしました。","기록을 쌓으면 그래프가 표시됩니다.":"記録が蓄積されるとグラフが表示されます。","JSON 파일로 내보냈습니다.":"JSON ファイルとして書き出しました。","형식이 맞지 않습니다.":"ファイル形式が正しくありません。","기록을 가져왔습니다.":"記録を読み込みました。","파일을 읽지 못했습니다. 올바른 God’s plan JSON인지 확인해 주세요.":"ファイルを読み込めませんでした。正しい God’s plan JSON か確認してください。","브라우저 내 규칙 기반 점검을 완료했습니다.":"ブラウザー内のルールベース点検が完了しました。","공유 문구를 복사했습니다.":"共有文をコピーしました。","복사할 수 없습니다. 내용을 직접 선택해 주세요.":"コピーできません。内容を手動で選択してください。","공유 기능을 사용할 수 없습니다.":"共有機能を利用できません。","공유 카드를 이미지로 저장했습니다.":"共有カードを画像として保存しました。","완료한 행동을 구체적으로 적어보세요.":"完了した行動を具体的に書いてください。","다음 행동을 더 쉽게 만들 개선점을 적어보세요.":"次の行動をより簡単にする改善点を書いてください。","예: 내가 가진 지식으로 작은 온라인 프로젝트 시작하기":"例：自分の知識を活かして小さなオンライン企画を始める","예: 글쓰기, 디자인, 금융 지식":"例：文章作成、デザイン、金融知識","예: 학업 우선, 평일에는 20분만 가능":"例：学業優先、平日は20分のみ","새 실행 과제를 입력하세요":"新しい実行タスクを入力","예: 콘텐츠 주제 3개 조사하기":"例：コンテンツのテーマを3つ調べる","오늘의 행동:":"今日の行動：","작은 실행 하나":"小さな実行を1つ","실행을 기록하고 다음 단계로 이어갑니다.":"実行を記録し、次のステップにつなげます。","오늘의 핵심 행동 · ":"今日の重要な行動 · ","목표는 “":"目標は「","”입니다. 현재 조건은 하루 ":"」。現在の条件は1日",", 비용 범위는 ":"、予算範囲：",", 강점은 ":"、強み：","입니다. 첫 단계에서는 결과를 크게 만들기보다, 누구의 어떤 문제를 해결할 수 있는지 확인하는 것이 좋습니다.":"です。最初の段階では大きな成果を狙うより、誰のどんな課題を解決できるかを確認しましょう。","제약 조건도 반영하세요: ":"この制約も反映してください：","유료 도구나 결제 없이 시작할 수 있는 조사·시제품·피드백부터 진행하세요.":"有料ツールや支払いを使わずに始められる調査・試作・フィードバックから進めましょう。","오늘은 ":"今日は","를 해보세요. ":"に取り組んでみましょう。"," 안에 끝낼 수 있도록 범위를 줄이고, 완료 여부와 배운 점을 기록하세요.":"使作業範囲を利用可能な時間内に終えられる大きさにし、完了状況と学びを記録しましょう。","0 ENTRIES":"0件の記録","실천 수준 ":"実践レベル ","분":"分","언어 선택":"言語を選択","PRIVATE SESSION":"プライベートセッション","AI: LOCAL RULESET":"AI：ローカルルール","DATA: USER INPUT":"データ：ユーザー入力","PUBLIC PREVIEW":"公開プレビュー","서비스 상태":"サービス状態","워크스페이스 메뉴":"ワークスペースメニュー","God's plan 홈":"God's plan ホーム","God's plan 대시보드 미리보기":"God's plan ダッシュボードプレビュー","처음 시작":"始めたばかり","기초 지식 있음":"基礎知識あり","작은 프로젝트 경험 있음":"小規模プロジェクトの経験あり","꾸준히 실행 중":"継続して実践中","15분":"15分","30분":"30分","1시간":"1時間","2시간":"2時間","0원 / 무료 도구 중심":"0ウォン／無料ツール中心","소액":"少額","아직 미정":"未定","소액 (필요성 검토 후)":"少額（必要性を確認後）","실제 한 일":"実際の活動","오늘의 행동":"今日の行動","과제 완료":"タスク完了","과제 삭제":"タスクを削除","TASKS COMPLETED":"完了タスク","DAYS RECORDED":"記録日数","PRACTICE TIME":"実践時間","DAY STREAK":"連続記録日数","오늘의 행동 제안":"行動を提案","전략 초안":"戦略案","목표":"目標","관심 분야":"関心分野","시간":"時間","비용":"費用","지식":"知識","학습":"学習","다음":"次","실천 수준":"実践レベル","PERSONAL STRATEGY TERMINAL":"パーソナル戦略ターミナル","SESSION ACTIVE":"セッション稼働中","HOW IT WORKS":"使い方","WORKSPACE":"ワークスペース","PROGRESS":"進捗","SHARE STUDIO":"共有スタジオ","STRATEGY":"戦略","CONTROL DESK":"コントロールデスク","LAYOUT SAMPLE":"画面サンプル","WORKSPACE / 001":"ワークスペース / 001","NO LIVE MARKET DATA":"リアルタイム市場データなし","MODULE":"モジュール","FUNCTION":"機能","STATE":"状態","01 / THINK":"01 / 思考","02 / SCAN":"02 / 探索","03 / EXEC":"03 / 実行","04 / LOG":"04 / 記録","READY":"準備完了","REVIEW":"確認待ち","ACTIVE":"進行中","SESSION":"セッション","ENVIRONMENT: BROWSER SESSION":"環境：ブラウザーセッション","BUILD 01.01":"ビルド 01.01","Daily momentum":"日々の行動力","01 / DISCOVER":"01 / 発見","03 / EXECUTE":"03 / 実行","04 / IMPROVE":"04 / 改善","A SIMPLE SYSTEM, BUILT FOR REAL LIFE":"日常で使えるシンプルなシステム","Define your direction":"方向性を定める","Explore opportunities":"機会を探す","Make it actionable":"行動に落とし込む","Review & improve":"振り返りと改善","YOUR PERSONAL COMMAND CENTER":"パーソナル・コマンドセンター","Overview":"概要","Strategy Design":"戦略設計","Opportunity Radar":"機会レーダー","Execution":"実行","Strategy Review":"戦略レビュー","LOCAL SESSION MODE":"ローカルセッションモード","MONDAY / YOUR PRIVATE WORKSPACE":"月曜日 / あなた専用のワークスペース","Good to see you.":"おかえりなさい。","TODAY":"今日","01 / STRATEGY DESIGN":"01 / 戦略設計","START WITH YOUR REALITY":"現実から始める","TODAY'S BRIEFING":"今日のブリーフィング","01 / FOCUS":"01 / フォーカス","02 / OPPORTUNITY RADAR":"02 / 機会レーダー","IDEAS TO TEST · NOT INCOME PROMISES":"検証するアイデア · 収益の保証ではありません","KNOWLEDGE / DIGITAL":"知識 / デジタル","CONTENT / MEDIA":"コンテンツ / メディア","SKILL / SERVICE":"スキル / サービス","03 / EXECUTION BOARD":"03 / 実行ボード","MAKE PROGRESS VISIBLE":"進捗を可視化する","04 / PROGRESS TRACKER":"04 / 進捗トラッカー","CONSISTENCY OVER HYPE":"一時的な話題より継続を重視","DAILY PRACTICE LOG":"毎日の実践記録","SESSION ONLY":"このセッションのみ","MOMENTUM OVER TIME":"時間とともに積み上がる行動","05 / STRATEGY REVIEW":"05 / 戦略レビュー","LOCAL PREVIEW · NO API CALL":"ローカルプレビュー · API未接続","LOGIC CHECK":"論理チェック","REALITY CHECK":"現実性チェック","GROWTH CHECK":"改善・成長チェック","06 / SHARE STUDIO":"06 / 共有スタジオ","MAKE YOUR MOMENTUM VISIBLE":"行動の積み重ねを見える化","GOD'S PLAN · DAILY MOMENTUM":"GOD'S PLAN · DAILY MOMENTUM","TODAY'S PRACTICE":"今日の実践","YOUR PROGRESS · 01":"あなたの進捗 · 01","How it works":"使い方","Workspace":"ワークスペース","Share":"共有","Execute":"実行","Select language":"言語を選択"}};
+  const LANG_LOCALE={ko:'ko-KR',zh:'zh-CN',ja:'ja-JP',en:'en-US'};
+  let activeLanguage='ko';
+  const originalTextNodes=new WeakMap(), lastTranslatedText=new WeakMap();
+  const originalAttrs=new WeakMap(), lastTranslatedAttrs=new WeakMap();
+  function localizeText(input, lang=activeLanguage){
+    let out=String(input??'');
+    if(lang==='ko') return out;
+    const dict=LEXICON[lang]||{};
+    for(const key of Object.keys(dict).sort((a,b)=>b.length-a.length)) out=out.split(key).join(dict[key]);
+    return out;
+  }
+  function translateTextNode(node){
+    const current=node.nodeValue;
+    let original=originalTextNodes.get(node);
+    if(original===undefined || current!==lastTranslatedText.get(node)){ original=current; originalTextNodes.set(node,original); }
+    const result=localizeText(original);
+    if(result!==current) node.nodeValue=result;
+    lastTranslatedText.set(node,result);
+  }
+  function translateAttrs(el){
+    if(!el || el.nodeType!==1) return;
+    const attrs=['placeholder','aria-label','title'];
+    let originals=originalAttrs.get(el); if(!originals){originals={};originalAttrs.set(el,originals);}
+    let lasts=lastTranslatedAttrs.get(el); if(!lasts){lasts={};lastTranslatedAttrs.set(el,lasts);}
+    attrs.forEach(attr=>{
+      if(!el.hasAttribute(attr)) return;
+      const current=el.getAttribute(attr);
+      if(originals[attr]===undefined || current!==lasts[attr]) originals[attr]=current;
+      const next=localizeText(originals[attr]);
+      if(next!==current) el.setAttribute(attr,next);
+      lasts[attr]=next;
+    });
+    if(el.hasAttribute('data-idea')){
+      if(originals.idea===undefined || el.getAttribute('data-idea')!==lasts.idea) originals.idea=el.getAttribute('data-idea');
+      const next=localizeText(originals.idea); el.setAttribute('data-idea',next); lasts.idea=next;
+    }
+  }
+  function translateSubtree(root=document.body){
+    if(!root) return;
+    if(root.nodeType===3){translateTextNode(root);return;}
+    if(root.nodeType!==1 && root!==document) return;
+    if(root.nodeType===1) translateAttrs(root);
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    let node; while((node=walker.nextNode())){
+      const parent=node.parentElement;
+      if(parent && !['SCRIPT','STYLE'].includes(parent.tagName)) translateTextNode(node);
+    }
+    if(root.querySelectorAll) root.querySelectorAll('*').forEach(translateAttrs);
+  }
+  function currentDateLocale(){return LANG_LOCALE[activeLanguage]||'ko-KR';}
+  function setLanguage(lang, updateUrl=true){
+    if(!['ko','zh','ja','en'].includes(lang)) lang='ko';
+    activeLanguage=lang;
+    document.documentElement.lang=lang==='zh'?'zh-CN':lang;
+    const select=document.getElementById('languageSelect'); if(select) select.value=lang;
+    translateSubtree(document.body);
+    const date=document.getElementById('todayDate');
+    if(date) date.textContent=new Date().toLocaleDateString(currentDateLocale(),{year:'numeric',month:'long',day:'numeric',weekday:'short'}).toUpperCase();
+    document.title=lang==='ko'?"God's plan — Personal Strategy OS":lang==='zh'?"God's plan — 个人策略系统":lang==='ja'?"God's plan — パーソナル戦略OS":"God's plan — Personal Strategy OS";
+    if(updateUrl){
+      try{const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url.toString());}catch(e){}
+    }
+  }
+  function initLanguage(){
+    let initial='ko';
+    try{const fromUrl=new URL(location.href).searchParams.get('lang');if(['ko','zh','ja','en'].includes(fromUrl))initial=fromUrl;}catch(e){}
+    const select=document.getElementById('languageSelect');
+    if(select) select.addEventListener('change',()=>setLanguage(select.value,true));
+    setLanguage(initial,false);
+    const observer=new MutationObserver(records=>{
+      for(const record of records){
+        if(record.type==='characterData') translateTextNode(record.target);
+        record.addedNodes?.forEach(node=>translateSubtree(node));
+      }
+    });
+    observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+  }
+  const t=(text)=>localizeText(text);
+
+  initLanguage();
+  boot();
+})();
+</script>
+</body>
+</html>
